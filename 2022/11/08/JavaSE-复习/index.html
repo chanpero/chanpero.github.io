@@ -1,0 +1,1643 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Myfavicon.png">
+  <link rel="icon" href="/img/Myfavicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="chanper">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="JavaSE 复习总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaSE 复习">
+<meta property="og:url" content="https://chanpero.github.io/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/index.html">
+<meta property="og:site_name">
+<meta property="og:description" content="JavaSE 复习总结">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://chanpero.github.io/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.svg">
+<meta property="og:image" content="https://chanpero.github.io/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E8%87%AA%E5%8A%A8%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2.svg">
+<meta property="og:image" content="https://chanpero.github.io/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2.svg">
+<meta property="og:image" content="https://chanpero.github.io/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E7%9F%AD%E8%B7%AF%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6.svg">
+<meta property="og:image" content="https://chanpero.github.io/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6%E4%BD%9C%E7%94%A8%E8%8C%83%E5%9B%B4.svg">
+<meta property="og:image" content="https://chanpero.github.io/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/String%E9%9D%A2%E8%AF%95%E9%A2%98.svg">
+<meta property="og:image" content="https://chanpero.github.io/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/String%E6%8B%BC%E6%8E%A5%E5%AD%97%E7%AC%A6%E4%B8%B2.svg">
+<meta property="og:image" content="https://chanpero.github.io/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/StringBuilder%E6%8B%BC%E6%8E%A5%E5%AD%97%E7%AC%A6%E4%B8%B2.svg">
+<meta property="og:image" content="https://chanpero.github.io/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E9%9B%86%E5%90%88%E4%BD%93%E7%B3%BB.svg">
+<meta property="og:image" content="https://chanpero.github.io/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/map%E4%BD%93%E7%B3%BB.svg">
+<meta property="og:image" content="https://chanpero.github.io/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E5%8F%8D%E5%B0%84%E8%8E%B7%E5%8F%96Class.svg">
+<meta property="og:image" content="https://chanpero.github.io/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/IO%E6%B5%81%E5%88%86%E7%B1%BB.svg">
+<meta property="og:image" content="https://chanpero.github.io/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/IO%E6%B5%81%E4%BD%93%E7%B3%BB.svg">
+<meta property="og:image" content="https://chanpero.github.io/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.svg">
+<meta property="og:image" content="https://chanpero.github.io/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB.svg">
+<meta property="og:image" content="https://chanpero.github.io/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B%E5%8F%8D%E7%BC%96%E8%AF%91.svg">
+<meta property="og:image" content="https://chanpero.github.io/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E6%97%A5%E5%BF%97%E4%BD%93%E7%B3%BB.svg">
+<meta property="og:image" content="https://chanpero.github.io/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/Java%E5%86%85%E5%AD%98%E5%8C%BA.svg">
+<meta property="og:image" content="https://chanpero.github.io/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E5%9F%BA%E6%9C%AC%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D.png">
+<meta property="og:image" content="https://chanpero.github.io/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E4%B8%A4%E4%B8%AA%E5%BC%95%E7%94%A8%E6%8C%87%E5%90%91%E5%90%8C%E4%B8%80%E5%AF%B9%E8%B1%A1.png">
+<meta property="og:image" content="https://chanpero.github.io/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92.png">
+<meta property="og:image" content="https://chanpero.github.io/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92.png">
+<meta property="og:image" content="https://chanpero.github.io/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E4%B8%A4%E4%B8%AA%E7%B1%BB%E5%AF%B9%E8%B1%A1%E5%86%85%E5%AD%98%E5%9B%BE.png">
+<meta property="og:image" content="https://chanpero.github.io/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E9%9B%86%E5%90%88%E5%AD%98%E5%82%A8%E5%86%85%E5%AD%98%E5%9B%BE.png">
+<meta property="og:image" content="https://chanpero.github.io/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E9%9D%99%E6%80%81%E5%B8%B8%E9%87%8F%E5%86%85%E5%AD%98%E5%9B%BE.png">
+<meta property="og:image" content="https://chanpero.github.io/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E5%AD%90%E7%B1%BB%E7%BB%A7%E6%89%BF%E5%86%85%E5%AD%98%E5%9B%BE.png">
+<meta property="article:published_time" content="2022-11-08T01:04:56.000Z">
+<meta property="article:modified_time" content="2022-11-08T01:59:10.408Z">
+<meta property="article:author" content="chanper">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://chanpero.github.io/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.svg">
+  
+  
+  
+  <title>JavaSE 复习 - </title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chanpero.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"e6fbf52343bffac933f91eae00e480dc","google":"UA-245755945-1","gtag":"G-89BD3B3114","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1InH4XckKf2mHSUQuLHRajZH-gzGzoHsz","app_key":"jDwLBVwoqcNPXW57ymIDicVB","server_url":"https://1inh4xck.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?e6fbf52343bffac933f91eae00e480dc";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript('https://www.google-analytics.com/analytics.js', function() {
+          window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) };
+          ga.l = +new Date;
+          ga('create', 'UA-245755945-1', 'auto');
+          ga('send', 'pageview');
+        });
+      }
+    </script>
+  
+
+  
+    <!-- Google gtag.js -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript('https://www.googletagmanager.com/gtag/js?id=G-89BD3B3114', function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-89BD3B3114');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>chanper</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/banner.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="JavaSE 复习"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-11-08 09:04" pubdate>
+          2022年11月8日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          15k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          127 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">JavaSE 复习</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Java-SE-复习"><a href="#Java-SE-复习" class="headerlink" title="Java SE 复习"></a>Java SE 复习</h1><h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><ol>
+<li>引用数据类型</li>
+<li>基本数据类型 4大类8种 <em>(1-2-4-8)</em><img src="/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.svg" srcset="/img/loading.gif" lazyload class="" title="alt Java基本数据类型"></li>
+</ol>
+<ul>
+<li><p>自动类型转换：类型范围小的变量，可以直接赋值给类型范围大的变量</p>
+<img src="/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E8%87%AA%E5%8A%A8%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2.svg" srcset="/img/loading.gif" lazyload class="" title="alt 自动类型转换">
+
+<p><strong><code>byte --&gt; short (char) --&gt; int --&gt; long --&gt; float --&gt; double</code></strong></p>
+</li>
+<li><p>在表达式中，小范围类型的变量会自动转换成较大范围的类型再运算</p>
+<ul>
+<li><strong><code>byte, short, char --&gt; int --&gt; long --&gt; float --&gt; double</code></strong></li>
+<li>最终结果类型由表达式中的最高类型决定</li>
+<li>在表达式中，byte、short、char 直接转换成int类型参与运算的</li>
+</ul>
+</li>
+<li><p>强制类型转换：可以强行将类型范围大的变量、数据赋值给类型范围小的变量</p>
+<img src="/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2.svg" srcset="/img/loading.gif" lazyload class="" title="alt 强制类型转换">
+
+<ul>
+<li>强制类型转换可能造成数据(丢失)溢出</li>
+<li>浮点型强转成整型，直接丢掉小数部分，保留整数部分返回</li>
+</ul>
+</li>
+</ul>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><ul>
+<li>短路逻辑运算符<img src="/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E7%9F%AD%E8%B7%AF%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6.svg" srcset="/img/loading.gif" lazyload class="" title="alt 短路逻辑运算符"></li>
+<li>逻辑与<code>&amp;</code>, 逻辑或<code>|</code>: 无论左边是false还是true，右边都要执行</li>
+</ul>
+<h2 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h2><ul>
+<li>代码块<code>&#123;&#125;</code>是类的5大成分之一(成员变量、构造器、方法、代码块、内部类)</li>
+<li>静态代码块<ul>
+<li><code>static&#123; &#125;</code></li>
+<li>通过static关键字修饰，随着类的加载而加载，自动触发，只执行一次</li>
+<li>使用场景：在类加载的时候做一些静态数据初始化的操作，以便后续使用</li>
+</ul>
+</li>
+<li>构造代码块(很少使用)<ul>
+<li><code>&#123; &#125;</code></li>
+<li>每次创建对象调用构造器前，都会执行该代码块</li>
+<li>使用场景：初始化实例资源</li>
+</ul>
+</li>
+</ul>
+<h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><ul>
+<li><p>饿汉单例：</p>
+<ul>
+<li>在用类获取对象时，对象已经提前为你创建好了</li>
+<li>设计步骤：定义类，构造器私有，定义静态变量存储单例对象</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> SingleInstance &#123;<br>  <span class="hljs-comment">// 属于类，与类一起仅加载一次</span><br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">SingleInstance</span> <span class="hljs-variable">instance</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SingleInstance</span>();<br><br>  <span class="hljs-keyword">private</span> <span class="hljs-title function_">SingleInstance</span><span class="hljs-params">()</span> &#123;<br>    System.out.println(<span class="hljs-string">&quot;创建了一个对象&quot;</span>);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>懒汉单例：</p>
+<ul>
+<li>在真正需要该对象时，才去创建一个对象(延迟加载对象)</li>
+<li>设计步骤：定义类，构造器私有，定义静态变量存储对象，提供一个返回单例对象的方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> SingleInstance &#123;<br>  <span class="hljs-comment">// 类加载时初始为null</span><br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> SingleInstance instance;<br><br>  <span class="hljs-keyword">private</span> <span class="hljs-title function_">SingleInstance</span><span class="hljs-params">()</span> &#123;&#125;<br><br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> SingleInstance <span class="hljs-title function_">getInstance</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-keyword">if</span>(instance == <span class="hljs-literal">null</span>)<br>      instance = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SingleInstance</span>();<br>    <span class="hljs-keyword">return</span> instace;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><ul>
+<li>子类中访问成员满足就近原则，先找子类，子类没有找父类，父类没有报错</li>
+<li>子类可以直接使用父类的静态成员(共享)</li>
+<li>方法重写<ul>
+<li>私有方法不能被重写。但可以定义相同签名的方法。</li>
+<li>子类重写父类方法时，访问权限必须大于或等于父类 <code>缺省 &lt; protected &lt; public</code></li>
+<li>子类不能重写父类的静态方法</li>
+</ul>
+</li>
+<li>权限修饰符<ul>
+<li><code>private &lt; 缺省 &lt; protected &lt; public</code><img src="/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6%E4%BD%9C%E7%94%A8%E8%8C%83%E5%9B%B4.svg" srcset="/img/loading.gif" lazyload class="" title="alt 权限修饰符作用范围"></li>
+</ul>
+</li>
+<li>final 修饰符<ul>
+<li>修饰类，表明该类不能被继承</li>
+<li>修饰方法，表明该方法不能被重写</li>
+<li>修饰变量，表明该变量不能被重新赋值 <ul>
+<li>基本类型 – 数据值不能改变</li>
+<li>引用类型 – 存储的地址值不能改变(地址指向的对象可变)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><ul>
+<li>一种约束规范</li>
+<li>接口中的变量默认都是 <code>public static final</code></li>
+<li>接口中的方法默认都是 <code>public abstract</code></li>
+<li>JDK 8&#x2F;9 新增特性：<ul>
+<li><ol>
+<li>默认方法 - default修饰，自动public，需用接口实现类的对象来调用</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>静态方法 - static修饰，自动public，需用接口本身的接口名调用</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>私有方法 - private修饰，只能在 接口中被其它的方法访问</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>一个类同时继承父类和实现接口中的同名方法，优先使用父类的</li>
+</ul>
+<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><ul>
+<li>访问特点：<ul>
+<li>方法调用：编译看左边，运行看右边</li>
+<li>变量调用：编译看左边，运行也看左边</li>
+</ul>
+</li>
+<li>强制类型转换<ul>
+<li>可以转换成真正的子类型，从而调用子类的独有功能</li>
+<li>强转前尽量使用<code>instanceof</code>判断对象的真实类型再进行强转</li>
+</ul>
+</li>
+</ul>
+<h2 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h2><h3 id="1-静态内部类"><a href="#1-静态内部类" class="headerlink" title="1. 静态内部类"></a>1. 静态内部类</h3><ul>
+<li><code>static</code>修饰，属于外部类这个类</li>
+<li>创建格式：<code>Outer.Inner in = new Outer.Inner()</code></li>
+<li>可以直接访问外部类静态对象</li>
+<li>不可以直接访问外部类实例成员</li>
+</ul>
+<h3 id="2-成员内部类"><a href="#2-成员内部类" class="headerlink" title="2. 成员内部类"></a>2. 成员内部类</h3><ul>
+<li><code>无 static</code>修饰，属于外部类的对象</li>
+<li>创建格式：Outer.Inner in &#x3D; new Outer().new Inner();</li>
+<li>可以直接访问外部类静态对象</li>
+<li>可以直接访问外部类实例成员(必须先有外部类对象，才能有成员内部类对象)</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">People</span>&#123;<br>  <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> <span class="hljs-variable">hearbeat</span> <span class="hljs-operator">=</span> <span class="hljs-number">150</span>;<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Heart</span>&#123;<br>      <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> <span class="hljs-variable">hearbeat</span> <span class="hljs-operator">=</span> <span class="hljs-number">110</span>;<br>      <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">show</span><span class="hljs-params">()</span>&#123;<br>          <span class="hljs-type">int</span> <span class="hljs-variable">hearbeat</span> <span class="hljs-operator">=</span> <span class="hljs-number">78</span>;<br>          System.out.println(hearbeat); <span class="hljs-comment">// 78</span><br>          System.out.println(<span class="hljs-built_in">this</span>.hearbeat); <span class="hljs-comment">// 110</span><br>          System.out.println(People.<span class="hljs-built_in">this</span>.hearbeat); <span class="hljs-comment">// 150</span><br>      &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-局部内部类"><a href="#3-局部内部类" class="headerlink" title="3. 局部内部类"></a>3. 局部内部类</h3><ul>
+<li>放在方法、代码块、构造器等执行体中</li>
+<li>类文件名：<code>Outer$NInner.class</code></li>
+<li>鸡肋</li>
+</ul>
+<h3 id="4-匿名内部类"><a href="#4-匿名内部类" class="headerlink" title="4. 匿名内部类"></a>4. 匿名内部类</h3><ul>
+<li>本质上是没有名字的局部内部类</li>
+<li>既是一个类，也代表一个对象(new的类型的子类类型)，写出来就会产生一个匿名内部类的对象</li>
+<li>可以直接作为对象传给方法</li>
+<li>作用：方便创建子类对象，简化代码编写</li>
+<li>创建格式：<code>new 类/抽象类名/接口( )&#123; 重写方法 &#125;</code></li>
+</ul>
+<ul>
+<li>Lambda表达式：<ul>
+<li>一个匿名函数，是一段可以传递的代码</li>
+<li>用于简化函数式接口的匿名内部类的写法形式</li>
+<li>函数式接口：有且仅有一个抽象方法的接口，通常加上@FunctionalInterface注解</li>
+</ul>
+</li>
+</ul>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><h3 id="两种创建过程"><a href="#两种创建过程" class="headerlink" title="两种创建过程"></a>两种创建过程</h3><ol>
+<li><p><code>&quot;&quot;</code>双引号创建字符串：会先判断常量池里面是否有相同的字符串，若有则直接指向该地址</p>
+</li>
+<li><p><code>new</code>关键字不论常量池中是否已经有该串，都会在堆中开辟新的内存空间存放该字符串</p>
+</li>
+</ol>
+<h3 id="String-面试题"><a href="#String-面试题" class="headerlink" title="String 面试题"></a>String 面试题</h3><ul>
+<li>问题：下列代码的运行结果是？<img src="/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/String%E9%9D%A2%E8%AF%95%E9%A2%98.svg" srcset="/img/loading.gif" lazyload class="" title="alt String面试题1"></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 先在堆的字符串常量池里创建&quot;abc&quot;的串，然后new再创建一个新串赋给s2</span><br><span class="hljs-type">String</span> <span class="hljs-variable">s2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(<span class="hljs-string">&quot;abc&quot;</span>); <br><span class="hljs-comment">// 由于是双引号，直接指向常量池里的&quot;abc&quot;，因此这条语句没有创建新字符串</span><br><span class="hljs-type">String</span> <span class="hljs-variable">s1</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;abc&quot;</span><br><span class="hljs-comment">//false, s1指向的是常量池里的&quot;abc&quot;,s2指向的是堆里的&quot;abc&quot;</span><br>System.out.println(s1 == s2) <br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">s7</span>  <span class="hljs-operator">=</span> <span class="hljs-string">&quot;qwe&quot;</span>;<br><span class="hljs-type">String</span> <span class="hljs-variable">s8</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;qw&quot;</span>;<br><span class="hljs-comment">// 只要不是直接双引号给出的字符串，都是非常量池的</span><br><span class="hljs-type">String</span> <span class="hljs-variable">s9</span> <span class="hljs-operator">=</span> s8 + <span class="hljs-string">&quot;e&quot;</span>;<br><span class="hljs-comment">// false, s7指向常量池的&quot;qwe&quot;,s9指向堆里的&quot;qwe&quot;</span><br>System.out.println(s7 == s9);  <br><span class="hljs-type">String</span> <span class="hljs-variable">s10</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;asd&quot;</span>;<br><span class="hljs-type">String</span> <span class="hljs-variable">s11</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;a&quot;</span> + <span class="hljs-string">&quot;s&quot;</span> + <span class="hljs-string">&quot;d&quot;</span>;<br><span class="hljs-comment">// true, 编译优化机制：直接将&quot;a&quot;+&quot;s&quot;+&quot;d&quot;转换为&quot;asd&quot;，可以通过class文件确认</span><br><span class="hljs-comment">// 而s9由于s8是变量，不是字面量，因此没有优化</span><br>System.out.println(s10 == s11);<br></code></pre></td></tr></table></figure>
+
+
+<h3 id="StringBuilder-拼接字符串"><a href="#StringBuilder-拼接字符串" class="headerlink" title="StringBuilder 拼接字符串"></a>StringBuilder 拼接字符串</h3><img src="/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/String%E6%8B%BC%E6%8E%A5%E5%AD%97%E7%AC%A6%E4%B8%B2.svg" srcset="/img/loading.gif" lazyload class="" title="alt String拼接字符串"> <center>**String拼接字符串原理 - 每次拼接都会产生新的对象**</center>
+
+<img src="/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/StringBuilder%E6%8B%BC%E6%8E%A5%E5%AD%97%E7%AC%A6%E4%B8%B2.svg" srcset="/img/loading.gif" lazyload class="" title="alt StringBuilder拼接字符串"> <center>**StringBuilder拼接字符串原理 - 对同一个对象做修改**</center>
+
+<ul>
+<li>StringBuilder相当于一个容器，拼接、修改更加高效</li>
+<li>StringBuilder只是个工具，最终的目的是得到String </li>
+<li>StringBuffer是StringBuilder的多线程安全版，单线程下StringBuilder效率更高</li>
+</ul>
+<h2 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h2><h3 id="Collection"><a href="#Collection" class="headerlink" title="Collection"></a>Collection</h3><ul>
+<li><p><strong>List</strong>: 有序、可重复、有索引</p>
+<ul>
+<li><strong>ArrayList</strong>: 底层基于数组，默认长度10，存满时扩容1.5倍</li>
+<li><strong>LinkedList</strong>: 底层基于双链表，可模拟栈&#x2F; 队列</li>
+</ul>
+</li>
+<li><p><strong>Set</strong>: 无序、不重复、无索引</p>
+<ul>
+<li><strong>HashSet</strong>:<br>基于哈希表，底层采用<code>数组+链表+红黑树</code>实现。哈希表默认长度16，加载因子0.75，每次扩容2倍。相同哈希值的元素构成链表，新元素挂在老元素后面，当链表长度超过8自动转为红黑树。</li>
+<li><strong>LinkedHashSet</strong>:<br>有序，底层<code>哈希表+双链表</code>记录存储顺序</li>
+<li><strong>TreeSet</strong>:<br>自动排序，底层基于<code>红黑树</code>实现。必须指定比较规则 (比较器&#x2F;比较接口)</li>
+</ul>
+<p>如果希望 Set 认为两个内容一样的对象是重复的，必须重写对象的<code>hashCode()</code>和<code>equals()</code>方法</p>
+</li>
+</ul>
+<img src="/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E9%9B%86%E5%90%88%E4%BD%93%E7%B3%BB.svg" srcset="/img/loading.gif" lazyload class="" title="alt 集合体系">
+
+<ul>
+<li><p>遍历方式：</p>
+<ol>
+<li>迭代器 <code>Iterator::hasNext, Iterator::next</code></li>
+<li><code>for-each 循环</code> 注意集合中存储的是对象的地址，因此修改第三方变量不会影响到集合中的元素</li>
+<li>lambda表达式 <code>forEach(Consumer&lt;? super T&gt; action)</code></li>
+</ol>
+<p>遍历时直接用集合删除元素可能出现并发异常，可以通过迭代器删除</p>
+</li>
+<li><p><strong>Collections</strong> 集合工具类</p>
+<ul>
+<li>addAll</li>
+<li>sort</li>
+<li>shuffle</li>
+</ul>
+</li>
+<li><p>不可变集合 <strong>ImmutableCollections</strong>：</p>
+<ul>
+<li>List.of</li>
+<li>Set.of</li>
+<li>Map.of</li>
+</ul>
+</li>
+</ul>
+<h3 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h3><ul>
+<li><p><strong>HashMap</strong>: </p>
+<ul>
+<li>无序，不重复，无索引，值不作要求</li>
+<li>基于哈希表、数组、红黑树实现</li>
+<li>基于hashCode()和equals()保证键的唯一</li>
+</ul>
+</li>
+<li><p><strong>LinkedHashMap</strong>：</p>
+<ul>
+<li>按键有序，不重复，无索引，值不作要求</li>
+<li>基于哈希表、双链表记录存储顺序</li>
+</ul>
+</li>
+<li><p><strong>TreeMap</strong>: </p>
+<ul>
+<li>自动按键排序 ，不重复，无索引，值不作要求</li>
+<li>底层基于<code>红黑树</code>实现，必须指定键的比较规则(比较器&#x2F;比较接口)</li>
+</ul>
+</li>
+<li><p><strong>Properties</strong></p>
+<ul>
+<li>本质是Map集合，一般代表一个属性文件，存储对象键值对，作为系统配置信息</li>
+<li><code>store(Stream, comments), load(Stream), setProperty, getProperty</code></li>
+</ul>
+<p>Set系列集合的底层就是Map实现的，只是Set集合中的元素只要键数据，不要值数据。</p>
+</li>
+</ul>
+<img src="/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/map%E4%BD%93%E7%B3%BB.svg" srcset="/img/loading.gif" lazyload class="" title="alt map体系">
+
+<ul>
+<li>遍历方式：<ol>
+<li>键找值：<code>map.keySet(), map.get(key)</code></li>
+<li>键值对：<code>map.entrySet(), entry.getKey(), entry.getValue()</code></li>
+<li>Lambda表达式：<code>map.forEach(BiConsumer&lt;K, V&gt;)</code></li>
+</ol>
+</li>
+</ul>
+<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><ul>
+<li>自定义泛型类<br><code>public class MyGeneric&lt;T&gt; &#123;&#125;</code></li>
+<li>自定义泛型方法<br><code>public &lt;T&gt; void MyFun(T t) &#123;&#125;</code></li>
+<li>自定义泛型接口<br><code>public interface MyInterface&lt;E&gt; &#123;&#125;</code></li>
+<li>泛型通配符<br>？可以在使用泛型时代表一切类型<br><code>? extends Class</code> 泛型上限，限定必须是Class或其子类<br><code>? super Class</code> 泛型下限，限定必须是Class或其父类</li>
+<li>底层实现上，字节码中的泛型类型都会被擦除</li>
+</ul>
+<h2 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h2><p>对于任何一个Class对象，可以在运行时得到这个类的全部成分</p>
+<h3 id="获取Class对象"><a href="#获取Class对象" class="headerlink" title="获取Class对象"></a>获取Class对象</h3><ul>
+<li>Class.forName(String)</li>
+<li>类目.class</li>
+<li>对象.getClass()<img src="/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E5%8F%8D%E5%B0%84%E8%8E%B7%E5%8F%96Class.svg" srcset="/img/loading.gif" lazyload class="" title="alt 反射获取Class对象"></li>
+</ul>
+<h3 id="获取构造器"><a href="#获取构造器" class="headerlink" title="获取构造器"></a>获取构造器</h3><ul>
+<li>Class::getConstructors([paramTypes]) 获取公有构造器, Class::getDeclaredConstructors([paramTypes]) 获取所有构造器</li>
+<li>Constructor::newInstance() 根据指定构造器创建新对象</li>
+<li>Constructor::setAccessible(boolean) 设置访问检查，实现暴力反射(调用私有构造器，破坏了封装性)</li>
+</ul>
+<h3 id="获取成员变量"><a href="#获取成员变量" class="headerlink" title="获取成员变量"></a>获取成员变量</h3><ul>
+<li>Class::getFields(name), Class::getDeclaredFields(name)</li>
+<li>Field::set(object, val), Field::get(obj) 设置&#x2F;获取成员变量的值</li>
+<li>Field::setAccessible(boolean)</li>
+</ul>
+<h3 id="获取方法对象"><a href="#获取方法对象" class="headerlink" title="获取方法对象"></a>获取方法对象</h3><ul>
+<li>Class::getMethods([name, params]), Class::getDeclaredMethods([name, params])</li>
+<li>Method::invoke(obj, args…) 对obj对象调用目标方法，可以获取返回值</li>
+<li>Method::setAccessible(boolean)</li>
+</ul>
+<h2 id="Stream-流"><a href="#Stream-流" class="headerlink" title="Stream 流"></a>Stream 流</h2><ul>
+<li><p>结合Lambda表达式，简化集合、数组操作的API</p>
+</li>
+<li><p>流的三类方法：</p>
+<ul>
+<li><p>获取Stream流：<br>创建一条流水线，并把数据放到流水线上准备进行操作。如<code>Collection.stream(), Arrays.stream(T[]), Stream.of(T...)</code></p>
+</li>
+<li><p>中间方法：<br>流水线上的操作，调用完成后返回新的Stream流，支持链式编程。如<code>filter, limit, skip, distinct, map, concat</code></p>
+</li>
+<li><p>终结方法：<br>流水线的最后一个操作，调用后不返回Stream，因此一个Stream流仅有一个。如<code>forEach, count</code></p>
+</li>
+</ul>
+</li>
+<li><p>流的收集</p>
+<ul>
+<li>把Stream流操作后的结果转回集合或数组。Stream是手段，集合&#x2F;数组才是目的</li>
+<li>流只能使用一次 </li>
+<li>方法：<code>stream.collect, stream.toArray, stream.toList</code>, Collector包括<code>Collectors::toList, Collectors::toSet, Collectors::toMap</code>等</li>
+</ul>
+</li>
+</ul>
+<h2 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h2><h3 id="File类"><a href="#File类" class="headerlink" title="File类"></a>File类</h3><ul>
+<li>代表OS的文件&#x2F;文件夹对象。提供定位、获取文件信息、删除、创建等功能</li>
+<li><code>createNewFile</code></li>
+<li><code>mkdir</code>创建一级目录, <code>mkdirs</code>创建多级目录</li>
+<li><code>delete</code>删除文件&#x2F;空文件夹且不走回收站</li>
+<li><code>list</code>返回目录下文件名数组,<code>listFiles</code>返回目录下文件对象数组，仅包括一级</li>
+</ul>
+<h3 id="字符集"><a href="#字符集" class="headerlink" title="字符集"></a>字符集</h3><ul>
+<li>常见字符集:<ul>
+<li>ASCII: 1个字节存储1个字符，共128个</li>
+<li>GBK: 包含汉字等字符，一个中文2个字节存储</li>
+<li>Unicode (UTF-8): 一个中文3个字节存储</li>
+</ul>
+</li>
+<li>编解码：<ul>
+<li>英文、数字在任何字符集都占1字节，不会乱码</li>
+<li>编码：<code>string.getBytes(chatset)</code></li>
+<li>解码：<code>String(byte[], charset)</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="IO-流"><a href="#IO-流" class="headerlink" title="IO 流"></a>IO 流</h3><ul>
+<li><p>分类</p>
+<img src="/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/IO%E6%B5%81%E5%88%86%E7%B1%BB.svg" srcset="/img/loading.gif" lazyload class="" title="alt IO流分类">
+</li>
+<li><p>体系</p>
+<img src="/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/IO%E6%B5%81%E4%BD%93%E7%B3%BB.svg" srcset="/img/loading.gif" lazyload class="" title="alt IO流体系"></li>
+</ul>
+<h4 id="字节流"><a href="#字节流" class="headerlink" title="字节流"></a>字节流</h4><ul>
+<li><p>InputStream</p>
+<ul>
+<li><code>read(), read(byte[len]), readAllBytes</code> 读取1 &#x2F; len &#x2F; 所有字节</li>
+</ul>
+</li>
+<li><p>OutputStream</p>
+<ul>
+<li>覆盖管道，默认打开文件流会清空，构造器append &#x3D; true开启附加模式</li>
+<li><code>write(), flush(), close()</code> 输出字节流，必须刷新，结束需要关闭资源。close操作包括flush</li>
+<li>一般用 <strong>try-with-resource</strong> 处理资源 (Closeable&#x2F;AutoCloseable)</li>
+</ul>
+</li>
+</ul>
+<h4 id="字符流"><a href="#字符流" class="headerlink" title="字符流"></a>字符流</h4><ul>
+<li><p>Reader</p>
+<ul>
+<li><code>read(), read(char[len])</code> 读取 1 &#x2F; len 个字符</li>
+</ul>
+</li>
+<li><p>Writer</p>
+<ul>
+<li>覆盖管道，默认打开文件流会清空，构造器append &#x3D; true开启附加模式</li>
+<li><code>write(), flush(), close()</code> 输出字符流，必须刷新，结束需要关闭资源。close操作包括flush</li>
+<li>一般用 <strong>try-with-resource</strong> 处理资源 (Closeable&#x2F;AutoCloseable)</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>使用总结<ul>
+<li>字节流适合一切文件数据的拷贝，包括音视频、文本等</li>
+<li>字节流不适合读取中文内容输出</li>
+<li>字符流适合文本文件的读写</li>
+</ul>
+</li>
+</ul>
+<h4 id="缓冲流"><a href="#缓冲流" class="headerlink" title="缓冲流"></a>缓冲流</h4><ul>
+<li>也称高效流、高级流。自带8KB缓冲区，可以提高原始字节流、字符流读写数据的性能。建议使用<strong>缓冲流+字节数组</strong></li>
+<li><code>BufferedInputStream(InputStream)</code></li>
+<li><code>BufferedOutputStream(OutputStream)</code></li>
+<li><code>BufferedReader(Reader)</code>, <code>readline()</code></li>
+<li><code>BufferedWriter(Writer)</code>, <code>newLine()</code></li>
+</ul>
+<h4 id="转换流"><a href="#转换流" class="headerlink" title="转换流"></a>转换流</h4><ul>
+<li>把原始的字节流按照指定编码转换</li>
+<li>字符输入转换流：<code>InputStreamReader(InputStream, charset)</code></li>
+<li>字符输出转换流：<code>OutputStreamWriter(OutputStream, charset)</code></li>
+<li>建议创建转换流后使用缓冲流进行包装，提高性能</li>
+</ul>
+<h4 id="对象字节流-序列化"><a href="#对象字节流-序列化" class="headerlink" title="对象字节流 - 序列化"></a>对象字节流 - 序列化</h4><ul>
+<li>以内存为基准，把内存中的对象存储到磁盘文件中，称为对象序列化</li>
+<li>对象字节输出流：<code>ObjectOutputStream(OutputStream)</code></li>
+<li><code>oos.writeObject(obj)</code> obj 必须实现<code>Serializable</code>序列化接口</li>
+</ul>
+<ul>
+<li>以内存为基准，把存储在磁盘文件中的数据恢复成内存中的对象，称为对象反序列化</li>
+<li>对象字节输入流：<code>ObjectInputStream(InputStream)</code></li>
+<li><code>ois.readObject(obj)</code> obj 必须实现<code>Serializable</code>序列化接口</li>
+</ul>
+<ul>
+<li><code>transient</code>修饰的成员变量不参与序列化</li>
+<li>通常指定一个序列化版本号，以确保序列化、反序列化的对象保持一致</li>
+</ul>
+<h4 id="打印流"><a href="#打印流" class="headerlink" title="打印流"></a>打印流</h4><ul>
+<li>方便、高效地打印数据到文件中</li>
+<li>基于字节<code>PrintStream</code>, 基于字符<code>PrintWriter</code></li>
+<li><code>print()</code>, PrintStream支持写字节，PrintWriter支持写字符</li>
+<li><code>System.out</code>就是一个PrintStream对象。可以重定向输出语句到文件中：<code>System.setOut(new PrintStream(File))</code></li>
+</ul>
+<h4 id="commons-io-库"><a href="#commons-io-库" class="headerlink" title="commons-io 库"></a>commons-io 库</h4><ul>
+<li>IOUtils::copy</li>
+<li>FileUtils::copyFileToDirectory</li>
+<li>FileUtils::copyDirectoryToDirectory</li>
+<li>…</li>
+</ul>
+<ul>
+<li>JDK 1.7 引入了 NIO库</li>
+</ul>
+<h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><h3 id="多线程的创建"><a href="#多线程的创建" class="headerlink" title="多线程的创建"></a>多线程的创建</h3><h4 id="1-继承Thread类"><a href="#1-继承Thread类" class="headerlink" title="1. 继承Thread类"></a>1. 继承Thread类</h4><ul>
+<li>定义任务类继承java.lang.Thread，重写run()方法</li>
+<li>创建线程对象， 调用Thread::start()启动线程</li>
+</ul>
+<ul>
+<li>优点：编码简单</li>
+<li>缺点：不利于扩展，自定义线程无法继承其它类</li>
+</ul>
+<h4 id="2-实现Runnable接口"><a href="#2-实现Runnable接口" class="headerlink" title="2. 实现Runnable接口"></a>2. 实现Runnable接口</h4><ul>
+<li>创建Runnable接口匿名内部类，重写run()方法</li>
+<li>把Runnable交给Thread类处理，调用start()启动线程</li>
+</ul>
+<ul>
+<li>优点：可以继续继承、实现，扩展性强</li>
+<li>缺点：多一层包装，线程如果有执行结果不可以直接返回</li>
+</ul>
+<h4 id="3-实现Callable接口"><a href="#3-实现Callable接口" class="headerlink" title="3. 实现Callable接口"></a>3. 实现Callable接口</h4><ul>
+<li>定义任务类实现Callable接口，重写call()方法</li>
+<li>用FutureTask把Callable对象封装成线程任务对象</li>
+<li>把FutureTask交给Thread类处理调用，start()启动线程</li>
+<li>线程执行完毕后，通过FutureTask::get()获取任务执行的结果</li>
+</ul>
+<ul>
+<li>优点：可以继续继承、实现，扩展性强。且可以在线程执行完毕后获取执行结果</li>
+<li>缺点：编码稍复杂</li>
+</ul>
+<h3 id="Thread常用API"><a href="#Thread常用API" class="headerlink" title="Thread常用API"></a>Thread常用API</h3><ul>
+<li>setName, getName</li>
+<li>currentThread() 返回当前正在执行的线程对象的引用</li>
+<li>sleep(long) 让线程休眠指定时间，单位毫秒</li>
+<li>yield, join, interrupt…</li>
+</ul>
+<h3 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h3><ul>
+<li><p>多个线程同时访问同一个共享资源且修改该资源</p>
+</li>
+<li><p>线程同步的核心思想：加锁</p>
+<ul>
+<li>同步代码块 <ul>
+<li>synchronized(锁对象) </li>
+<li>一般把共享资源作为锁对象</li>
+<li>建议实例方法使用this作为锁对象，静态方法使用类.class对象作为锁对象</li>
+</ul>
+</li>
+<li>同步方法 <ul>
+<li>synchronized 修饰方法</li>
+<li>底层：实例方法默认对this加锁，静态方法默认对类.class加锁</li>
+</ul>
+</li>
+<li>Lock锁<ul>
+<li>实现类：ReentrantLock</li>
+<li>lock, unlock</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>线程通信</p>
+<ul>
+<li>wait() 让当前线程释放锁并进入等待，直到另一个线程唤醒</li>
+<li>notify(), notifyAll() 唤醒正在等待的单个 &#x2F; 所有线程</li>
+<li>必须通过当前同步锁对象进行调用</li>
+</ul>
+</li>
+</ul>
+<h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><ul>
+<li><p>创建线程的开销很大，可以通过复用线程，提高系统性能</p>
+</li>
+<li><p>线程池接口：<code>ExecutorService</code>; 实现类：<code>ThreadPoolExecutor</code>;  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-title function_">ThreadPoolExecutor</span><span class="hljs-params">(</span><br><span class="hljs-params">  <span class="hljs-type">int</span> corePoolSize,                   //指定线程池的线程数量 (核心线程)</span><br>  <span class="hljs-type">int</span> maximumPoolSize,                <span class="hljs-comment">//指定线程池可支持的最大线程数 (&gt;=核心线程数)</span><br>  <span class="hljs-type">long</span> keepAliveTime,                 <span class="hljs-comment">//指定临时线程的最大存活时间</span><br>  TimeUnit unit,                      <span class="hljs-comment">//指定存活时间的单位(秒、分、时、天)</span><br>  BlockingQueue&lt;Runnable&gt; workQueue,  <span class="hljs-comment">//指定任务队列</span><br>  ThreadFactory threadFactory,        <span class="hljs-comment">//指定用哪个线程工厂创建线程</span><br>  RejectedExecutionHandler handler    <span class="hljs-comment">//指定线程忙，任务满的时候，新任务来了怎么办</span><br>)<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>新任务提交时的服务顺序：核心线程 -&gt; 任务队列 -&gt; 创建临时线程 -&gt; 拒绝服务<ul>
+<li>如果核心线程都在忙，任务队列也满了，并且还可以创建临时线程，此时才会创建临时线程</li>
+<li>核心线程、临时线程都在忙，任务队列也满了，新的任务到达时才会开始拒绝服务</li>
+</ul>
+</li>
+<li>常用方法：<code>execute(Runnable), submit(Callable), shutdown(), shutdownNow()</code></li>
+<li>拒绝策略：<ul>
+<li><code>ThreadPoolExecutor.AbortPolicy</code> 默认策略，丢弃并抛出RejectedExecutionException异常</li>
+<li><code>ThreadPoolExecutor.DiscardPolicy</code> 丢弃且不抛异常，不推荐</li>
+<li><code>ThreadPoolExecutor.DiscardOldestPolicy</code> 抛弃队列中等待最久的任务 然后把当前任务加入队列中</li>
+<li><code>ThreadPoolExecutor.CallerRunsPolicy</code> 绕过线程池，由主线程直接调用任务的run()方法执行</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>线程池工具类: <code>Executors</code> 通过调用方法返回不同类型的线程池对象</p>
+<ul>
+<li><code>newCachedThreadPool()</code> 线程数量随着任务增加而增加，如果线程任务执行完毕且空闲了一段时间则会被回收掉</li>
+<li><code>newFixedThreadPool​(int nThreads)</code> 创建固定线程数量的线程池，如果某个线程因为执行异常而结束，那么线程池会补充一个新线程替代它</li>
+<li><code>newSingleThreadExecutor()</code> 创建只有一个线程的线程池对象，如果该线程出现异常而结束，那么线程池会补充一个新线程</li>
+<li><code>newScheduledThreadPool​(int corePoolSize)</code> 创建一个线程池，可以实现在给定的延迟后运行任务，或者定期执行任务</li>
+<li>底层仍是基于ThreadPoolExecutor实现的</li>
+<li>最大任务队列长度&#x2F;线程数量是Integer.MAX_VALUE,可能出现OOM</li>
+</ul>
+</li>
+</ul>
+<h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><h4 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h4><ul>
+<li>一种控制任务延时调用，或者周期调用的技术</li>
+<li>实现方式：<ol>
+<li>Timer<ul>
+<li>Timer::schedule(task, delay&#x2F;time, period);</li>
+<li>Timer单线程，处理多个任务按顺序执行，存在延时，和设置定时器的时间有出入</li>
+<li>可能因为异常导致Timer线程死掉，从而影响后续任务执行</li>
+</ul>
+</li>
+<li>ScheduledExecutorService<ul>
+<li>Executors.newScheduledThreadPool​(int corePoolSize)</li>
+<li>ScheduledExecutorService.scheduleAtFixedRate(Runnable, delay, period, unit)</li>
+<li>基于线程池，某个任何的执行情况不会影响其它定时任务</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="并行与并发"><a href="#并行与并发" class="headerlink" title="并行与并发"></a>并行与并发</h4><ul>
+<li>并发: CPU分时轮询执行</li>
+<li>并行: 同一时刻同时执行</li>
+</ul>
+<h4 id="线程的生命周期"><a href="#线程的生命周期" class="headerlink" title="线程的生命周期"></a>线程的生命周期</h4><ul>
+<li>Java定义了6中状态：Thread.State::{NEW, RUNNABLE, BLOCKED, WAITING, TIMED_WAITING, TERMINATED}<img src="/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.svg" srcset="/img/loading.gif" lazyload class="" title="线程的生命周期"></li>
+</ul>
+<h2 id="网络通信"><a href="#网络通信" class="headerlink" title="网络通信"></a>网络通信</h2><h3 id="三要素"><a href="#三要素" class="headerlink" title="三要素"></a>三要素</h3><h4 id="IP地址"><a href="#IP地址" class="headerlink" title="IP地址"></a>IP地址</h4><ul>
+<li>操作类 <code>InetAddress</code></li>
+<li>getLocalHost 返回本主机的地址对象</li>
+<li>getByName(host) 得到指定主机(域名&#x2F;IP)的IP地址对象</li>
+<li>getHostName 返回此IP地址的主机名</li>
+<li>getHostAddress 返回IP地址字符串 </li>
+<li>isReachable(timeout) 指定时间ms内是否连通该IP</li>
+</ul>
+<h4 id="端口"><a href="#端口" class="headerlink" title="端口"></a>端口</h4><ul>
+<li>标识主机上的进程，16bit，0-65535</li>
+<li>周知端口 0-1023：预先定义的知名应用，如HTTP 80，FTP 21</li>
+<li>注册端口 1024-49151：分配给用户进程&#x2F;应用程序，如Tomcat 8080，MySQL 3306</li>
+<li>动态端口 49152-65535</li>
+</ul>
+<h4 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h4><ul>
+<li>Ping命令直接基于网络层ICMP协议，无连接，不针对特定端口。与传输层TCP&#x2F;UDP，或是应用层HTTP等都无关</li>
+<li>Socket是一个调用接口，实际是对TCP&#x2F;IP协议的封装</li>
+<li>UDP协议的数据包大小限制64KB</li>
+</ul>
+<h3 id="UDP-通信"><a href="#UDP-通信" class="headerlink" title="UDP 通信"></a>UDP 通信</h3><ul>
+<li>DatagramPacket 数据包对象<ul>
+<li>DatagramPacket(byte[] buf, length, InetAddress, port)</li>
+<li>getLength() 获取实际接受的字节个数</li>
+</ul>
+</li>
+<li>DatagramSocket 发送者&#x2F;接收者对象<ul>
+<li>DatagramSocket(port)</li>
+<li>send(packet)</li>
+<li>receive(packet)</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>广播 Broadcast<ul>
+<li>使用广播地址 255.255.255.255</li>
+<li>发送端指定端口，其它主机注册该端口即可</li>
+</ul>
+</li>
+<li>组播 Multicast<ul>
+<li>使用组播地址 224.0.0.0 - 239.255.255.255</li>
+<li>发送端指定组播IP和端口，接收端绑定该组播IP，并注册该端口</li>
+<li>DatagramSocket的子类MulticastSocket::joinGroup负责绑定组播IP</li>
+</ul>
+</li>
+</ul>
+<h3 id="TCP-通信"><a href="#TCP-通信" class="headerlink" title="TCP 通信"></a>TCP 通信</h3><ul>
+<li><code>java.net.Socket</code> 基于TCP协议<ul>
+<li>Socket(host, port)</li>
+<li>Socket::getOutputStream()</li>
+<li>Socket::getInputStream()</li>
+</ul>
+</li>
+<li>ServerSocket 服务端<ul>
+<li>ServerSocket(port)</li>
+<li>ServerSocket::accept() 等待接收客户端的Socket通信连接，连接成功返回Socket对象与客户端建立端到端通信</li>
+</ul>
+</li>
+<li>服务端一般使用循环，负责接收客户端Socket管道连接,每接收到一个Socket管道后分配一个独立的线程负责处理它(线程池技术)</li>
+</ul>
+<h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><h3 id="异常体系"><a href="#异常体系" class="headerlink" title="异常体系"></a>异常体系</h3><ul>
+<li><strong>Error</strong>：系统级别问题、JVM退出等，代码无法控制</li>
+<li><strong>Exception</strong>：java.lang包下，称为异常类，表示程序本身可以处理的问题<ul>
+<li><strong>RuntimeException</strong>及其子类：运行时异常，编译阶段不会报错。如空指针、数组索引越界等</li>
+<li>除<strong>RuntimeException</strong>之外的所有异常：编译时异常，编译期必须处理，也称受检异常。如日期格式化异常</li>
+</ul>
+</li>
+</ul>
+<img src="/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB.svg" srcset="/img/loading.gif" lazyload class="" title="alt 异常体系">
+
+<h3 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h3><ul>
+<li><strong>throws</strong>：用在方法声明上，将方法内部出现的异常抛出给调用者</li>
+<li><strong>try-catch</strong>：监视捕获异常，在方法内部自己处理，程序继续执行</li>
+<li><strong>try-catch-finally</strong>: 除非JVM崩溃，否则必须执行finally块</li>
+<li><strong>try-with-resource</strong>: 自动关闭资源(Closeable&#x2F;AutoCloseable)，即使出现异常</li>
+</ul>
+<h3 id="自定义异常"><a href="#自定义异常" class="headerlink" title="自定义异常"></a>自定义异常</h3><ul>
+<li>定义异常继承 Exception &#x2F; RuntimeException</li>
+<li>重写构造器</li>
+<li>在出现异常的地方主动 throw 自定义异常对象</li>
+</ul>
+<h2 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h2><p>又称Java标注，对Java中类、方法、变量做标记，然后进行特殊处理</p>
+<ul>
+<li><p>自定义注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Target(&#123;ElementType.TYPE, ElementType.METHOD&#125;)</span><br><span class="hljs-meta">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> Book &#123;<br>    String <span class="hljs-title function_">value</span><span class="hljs-params">()</span>;<br>    <span class="hljs-type">double</span> <span class="hljs-title function_">price</span><span class="hljs-params">()</span> <span class="hljs-keyword">default</span> <span class="hljs-number">100</span>;<br>    String[] author();<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li><p>元注解：对注解类的注解</p>
+<ul>
+<li>@Target：约束注解标记的位置<ul>
+<li>ElementType.TYPE 类，接口</li>
+<li>ElementType.FIELD 成员变量</li>
+<li>ElementType.METHOD 成员方法</li>
+<li>ElementType.PARAMETER 方法参数</li>
+<li>ElementType.CONSTRUCTOR 构造器</li>
+<li>ElementType.LOCAL_VARIABLE 局部变量</li>
+</ul>
+</li>
+<li>@Retention：约束注解的存活范围<ul>
+<li>RetentionPolicy.SOURCE 注解只作用在源码阶段，生成的字节码文件中不存在</li>
+<li>RetentionPolicy.CLASS 默认值，注解作用在源码阶段，字节码文件阶段，运行阶段不存在</li>
+<li>RetentionPolicy.RUNTIME 注解作用在源码阶段，字节码文件阶段，运行阶段（开发常用）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>注解解析</p>
+<ul>
+<li>Annotation: 注解对象</li>
+<li>AnnotatedElement: 注解解析相关方法的接口，所有类成分Class&#x2F;Method&#x2F;Field&#x2F;Constructor均已实现<ul>
+<li>getDeclaredAnnotations()</li>
+<li>getDeclaredAnnotation(class)</li>
+<li>isAnnotationPresent(class)</li>
+</ul>
+</li>
+<li>解析技巧：注解在哪个成分上，就先拿哪个成分对象</li>
+</ul>
+</li>
+</ul>
+<h2 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h2><ul>
+<li>对业务功能进行代理，类似AOP编程</li>
+<li>Proxy::newProxyInstance(ClassLoader loader, Class&lt;?&gt;[] interfaces, InvocationHandler h)</li>
+<li>InvocationHandler::invoke(Object proxy, Method method, Object[] args)</li>
+<li>优点：<ul>
+<li>非常灵活，支持任意接口类型做代理，也可以直接为接口本身做代理</li>
+<li>可以为被代理对象的所有方法做代理</li>
+<li>不改变方法源码的情况下，实现对功能的增强</li>
+<li>简化编程，提高可扩展性，提高了开发效率</li>
+</ul>
+</li>
+</ul>
+<h2 id="常用API"><a href="#常用API" class="headerlink" title="常用API"></a>常用API</h2><h3 id="BigDecimal"><a href="#BigDecimal" class="headerlink" title="BigDecimal"></a>BigDecimal</h3><ul>
+<li>解决浮点型运算精度失真问题</li>
+<li>禁止使用BigDecimal(double)把double值转换为BigDecimal对象，依然存在精度损失风险</li>
+<li>推荐使用<code>BigDecimal(String)或BigDecimal.valueOf(Double)</code>的构造方式，自动对精度进行截断处理</li>
+<li>BigDecimal只是手段，目的是Double</li>
+</ul>
+<h3 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h3><ul>
+<li>枚举类都继承了 <code>java.lang.Enum</code></li>
+<li>枚举都是最终类，不可以被继承</li>
+<li>构造器都是私有，对外不能创建对象</li>
+<li>枚举类相当于多例模式<img src="/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B%E5%8F%8D%E7%BC%96%E8%AF%91.svg" srcset="/img/loading.gif" lazyload class="" title="alt 枚举类型反编译">
+<center>枚举类型反编译</center></li>
+</ul>
+<h3 id="日期与时间"><a href="#日期与时间" class="headerlink" title="日期与时间"></a>日期与时间</h3><ul>
+<li>Date 日期对象<ul>
+<li>Date() </li>
+<li>setTime(), getTime() 时间毫秒值</li>
+</ul>
+</li>
+<li>SimpleDateFormat<ul>
+<li>new SimpleDateFormat(pattern)</li>
+<li>format(Date&#x2F;time): Date&#x2F;time -&gt; String</li>
+<li>parse(dateStr): String -&gt; Date</li>
+</ul>
+</li>
+<li>Calendar 系统此刻日历对象<ul>
+<li>Calendar.getInstance()</li>
+</ul>
+</li>
+</ul>
+<p>JDK 8新增日期时间API：</p>
+<ul>
+<li>LocalDate 不包含具体时间的日期</li>
+<li>LocalTime 不包含日期的时间</li>
+<li>LocalDateTime 包含日期和时间</li>
+<li>Instant 时间戳</li>
+<li>DateTimeFormatter 时间格式化和解析</li>
+<li>Duration 计算两个时间间隔</li>
+<li>Period 计算两个日期间隔</li>
+<li>ChronoUnit 针对特定时间单位测量时间差</li>
+</ul>
+<h3 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h3><ul>
+<li>Pattern.complie(regex)</li>
+<li>pattern.matcher(String)</li>
+<li>matcher.find()</li>
+<li>matcher.group()</li>
+</ul>
+<h3 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h3><ul>
+<li><p>优势：可以将系统执行的信息选择性的记录到指定的位置，如控制台、文件、数据库等。并且随时以开关的形式控制是否记录，灵活性好</p>
+<img src="/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E6%97%A5%E5%BF%97%E4%BD%93%E7%B3%BB.svg" srcset="/img/loading.gif" lazyload class="" title="alt 日志体系">
+</li>
+<li><p>Logback 模块</p>
+<ul>
+<li>logback-core: 核心模块</li>
+<li>logback-classic: log4j 改良版本，完整实现 slf4j API</li>
+<li>logback-access: 与Tomcat和Jetty等Servlet容器集成，提供HTTP访问日志功能</li>
+</ul>
+</li>
+<li><p>使用：</p>
+<ul>
+<li>日志级别：TRACE &lt; DEBUG &lt; INFO &lt; WARN &lt; ERROR，默认DEBUG</li>
+<li>配置文件<code>logback.xml</code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Logger</span> <span class="hljs-variable">LOGGER</span> <span class="hljs-operator">=</span> LoggerFactory.getLogger(<span class="hljs-string">&quot;Test.class&quot;</span>);<br>LOGGER.debug(<span class="hljs-string">&quot;log info......&quot;</span>);<br>LOGGER.info(<span class="hljs-string">&quot;log info......&quot;</span>);<br>LOGGER.trace(<span class="hljs-string">&quot;a = &quot;</span> + a);<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h3><ul>
+<li>针对最小的功能单元，即Java中的方法，编写测试代码</li>
+<li>传统测试方法的缺陷：只能测试main，方法之间相互影响，无法得到测试结果的报告，无法实现自动化测试</li>
+<li>Junit单元测试框架<ul>
+<li>优点：可以灵活选择测试方法，自动生成测试报告</li>
+<li>使用：<ul>
+<li>导入JUnit</li>
+<li>编写公共的，无参数无返回值测试方法，并加上@Test注解</li>
+<li>允许测试</li>
+</ul>
+</li>
+<li>测试注解：@Before, @After, @BeforeClass, @AfterClass, @BeforeEach, @AfterEach, @BeforeAll, @AfterAll</li>
+</ul>
+</li>
+</ul>
+<h3 id="XML"><a href="#XML" class="headerlink" title="XML"></a>XML</h3><ul>
+<li>可扩展标记语言（eXtensible Markup Language），一种数据表示格式</li>
+<li>纯文本，默认UTF-8编码，可嵌套，经常用于网络传输、配置文件</li>
+<li>XML格式：<ul>
+<li>第一行文档声明 <code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</code></li>
+<li>特殊字符：小于 &amp;lt;  大于 &amp;gt; 和号 &amp;amp; 单引号 &amp;apos; 引号 &amp;quot;</li>
+<li>解释器忽略文本：&lt;![CDATA[…内容…]]&gt;</li>
+</ul>
+</li>
+<li>XML约束：限定xml文件中的标签以及属性规则<ul>
+<li>DTD <code>&lt;!DOCTYPE 根标签名 PUBLIC/SYSTEM &quot;dtd文件名&quot; &quot;dtd文件位置&quot;&gt;</code> 不能约束具体数据类型</li>
+<li>SCHEME <code>&lt;根标签 xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns=&quot;http://xxx.com&quot; xsi:schemaLocation=&quot;http://xxx.xsd&quot;&gt;</code> 约束更严谨</li>
+</ul>
+</li>
+<li>XML解析<ul>
+<li>SAX解析：一行一行解析</li>
+<li>DOM解析：整个文件解析，如JAXP、JDOM、<strong>Dom4j</strong>、jsoup</li>
+<li>Dom4j API:<ul>
+<li>List<Element> elements() 得到当前元素下所有子元素</li>
+<li>List<Element> elements(String name) 得到当前元素下指定名字的子元素返回集合</li>
+<li>Element element(String name) 得到当前元素下指定名字的子元素,如果有很多名字相同的返回第一个</li>
+<li>String getName() 得到元素名字</li>
+<li>String attributeValue(String name) 通过属性名直接得到属性值</li>
+<li>String elementText(子元素名) 得到指定名称的子元素的文本</li>
+<li>String getText() 得到文本</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>XML检索——XPath<ul>
+<li>使用路径表达式来定位元素节点或属性节点</li>
+<li>基于dom4j和jaxen</li>
+<li>selectSingleNode(exp), selectNodes(exp)</li>
+<li>四大检索方案：<ul>
+<li>绝对路径：<code>/根元素/子元素/孙元素</code> 从根元素开始，一级一级向下查找，不能跨级</li>
+<li>相对路径: <code>./子元素/孙元素</code> 从当前元素开始，一级一级向下查找，不能跨级</li>
+<li>全文检索: <code>//name</code> <code>//father/son</code> <code>//father//grandson</code> 直接全文搜索所有的name元素并打印</li>
+<li>属性查找: <code>//@attr</code> <code>//ele[@attr]</code> <code>//ele//[@attr=val]</code> 查找属性&#x2F;含有指定值的属性的元素</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h3><ul>
+<li>工厂模式：<ul>
+<li>对象通过工厂的方法创建返回</li>
+<li>可以为该对象进行加工和数据注入，实现类与类之间的解耦操作</li>
+</ul>
+</li>
+<li>装饰模式<ul>
+<li>创建新类，包装原始类</li>
+<li>可以在不改变原有类的基础上，动态扩展一个类的功能</li>
+</ul>
+</li>
+</ul>
+<h2 id="内存图"><a href="#内存图" class="headerlink" title="内存图"></a>内存图</h2><ul>
+<li>JVM内存区：<strong>虚拟机栈、堆、方法区</strong>、本地方法栈、程序计数器<img src="/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/Java%E5%86%85%E5%AD%98%E5%8C%BA.svg" srcset="/img/loading.gif" lazyload class="" title="alt Java内存区"></li>
+</ul>
+<ul>
+<li>基本内存分配：<img src="/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E5%9F%BA%E6%9C%AC%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D.png" srcset="/img/loading.gif" lazyload class="" title="alt 基本内存分配">
+
+<ul>
+<li>方法区存放加载的类信息</li>
+<li>栈(栈帧): 局部变量表</li>
+<li>堆: new出来的对象实例 （如数组）</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>两个引用指向同一对象</p>
+<img src="/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E4%B8%A4%E4%B8%AA%E5%BC%95%E7%94%A8%E6%8C%87%E5%90%91%E5%90%8C%E4%B8%80%E5%AF%B9%E8%B1%A1.png" srcset="/img/loading.gif" lazyload class="" title="alt 两个引用指向同一对象">
+
+<ul>
+<li>栈内存中两个引用的地址值指向堆中同一块内存区</li>
+<li>利用引用修改堆中数据后，所有引用指向该内存区域的数据都会反映出来</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Java参数传递机制<img src="/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92.png" srcset="/img/loading.gif" lazyload class="" title="alt 基本类型参数传递">
+<img src="/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92.png" srcset="/img/loading.gif" lazyload class="" title="alt 引用类型参数传递">
+<ul>
+<li>无论基本类型还是引用类型，都是值传递</li>
+<li>基本类型传递的是本身的数据值</li>
+<li>引用类型的值是指向堆内存的某个地址</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>两个对象内存图;<img src="/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E4%B8%A4%E4%B8%AA%E7%B1%BB%E5%AF%B9%E8%B1%A1%E5%86%85%E5%AD%98%E5%9B%BE.png" srcset="/img/loading.gif" lazyload class="" title="alt 两个类对象内存图">
+<ul>
+<li>方法区保存了类的信息，包括类名、成员变量、成员方法等</li>
+<li>堆中实际类对象的成员方法存的是方法区里类的成员方法引用</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>集合存储内存图</p>
+<img src="/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E9%9B%86%E5%90%88%E5%AD%98%E5%82%A8%E5%86%85%E5%AD%98%E5%9B%BE.png" srcset="/img/loading.gif" lazyload class="" title="alt 集合存储内存图">
+<ul>
+<li>数组&#x2F;集合中存储的元素并不是对象本身，而是对象的地址</li>
+</ul>
+</li>
+<li><p>静态常量内存图</p>
+<img src="/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E9%9D%99%E6%80%81%E5%B8%B8%E9%87%8F%E5%86%85%E5%AD%98%E5%9B%BE.png" srcset="/img/loading.gif" lazyload class="" title="alt 静态常量内存图">
+</li>
+<li><p>子类继承内存图</p>
+<img src="/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/%E5%AD%90%E7%B1%BB%E7%BB%A7%E6%89%BF%E5%86%85%E5%AD%98%E5%9B%BE.png" srcset="/img/loading.gif" lazyload class="" title="alt 子类继承内存图"></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Java/">#Java</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>JavaSE 复习</div>
+      <div>https://chanpero.github.io/2022/11/08/JavaSE-复习/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>chanper</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年11月8日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-nc"></i>
+                  </span>
+                </a>
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/10/22/%E7%AE%97%E6%B3%95%E9%A2%98%E6%A8%A1%E6%9D%BF/" title="算法题模板">
+                        <span class="hidden-mobile">算法题模板</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'chanpero/commit-utterances');
+      s.setAttribute('issue-term', 'title');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
