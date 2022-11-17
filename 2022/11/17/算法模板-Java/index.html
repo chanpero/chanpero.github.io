@@ -16,25 +16,22 @@
   <meta name="author" content="chanper">
   <meta name="keywords" content="">
   
-    <meta name="description" content="找出数组中唯一成单的数字，主要学习异或运算的性质和哈希表的使用">
+    <meta name="description" content="算法题模板 - Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode 136 只出现一次的数字">
-<meta property="og:url" content="https://chanpero.github.io/2022/10/16/LeetCode-136-%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97/index.html">
+<meta property="og:title" content="算法模板-Java">
+<meta property="og:url" content="https://chanpero.github.io/2022/11/17/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF-Java/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="找出数组中唯一成单的数字，主要学习异或运算的性质和哈希表的使用">
+<meta property="og:description" content="算法题模板 - Java">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://chanpero.github.io/img/leetcode.png">
-<meta property="article:published_time" content="2022-10-16T01:04:57.000Z">
-<meta property="article:modified_time" content="2022-11-07T07:16:23.151Z">
+<meta property="article:published_time" content="2022-11-17T12:02:16.000Z">
+<meta property="article:modified_time" content="2022-11-17T12:13:56.506Z">
 <meta property="article:author" content="chanper">
-<meta property="article:tag" content="LeetCode">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://chanpero.github.io/img/leetcode.png">
   
   
   
-  <title>LeetCode 136 只出现一次的数字 </title>
+  <title>算法模板-Java </title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -253,7 +250,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="LeetCode 136 只出现一次的数字"></span>
+            <span id="subtitle" data-typed-text="算法模板-Java"></span>
           
         </div>
 
@@ -264,8 +261,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-10-16 09:04" pubdate>
-          2022年10月16日 上午
+        <time datetime="2022-11-17 20:02" pubdate>
+          2022年11月17日 晚上
         </time>
       </span>
     
@@ -276,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          781 字
+          3.9k 字
         
       </span>
     
@@ -287,7 +284,7 @@
         
         
         
-          7 分钟
+          33 分钟
         
       </span>
     
@@ -333,25 +330,104 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">LeetCode 136 只出现一次的数字</h1>
+            <h1 style="display: none">算法模板-Java</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="LeetCode-136-只出现一次的数字"><a href="#LeetCode-136-只出现一次的数字" class="headerlink" title="LeetCode 136 只出现一次的数字"></a>LeetCode 136 只出现一次的数字</h1><p>链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/single-number/">https://leetcode.cn/problems/single-number/</a></p>
-<img src="/2022/10/16/LeetCode-136-%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97/LeetCode136.png" srcset="/img/loading.gif" lazyload class="" title="alt LeetCode136">
+                <h1 id="算法题模板-Java"><a href="#算法题模板-Java" class="headerlink" title="算法题模板 - Java"></a>算法题模板 - Java</h1><span id="more"></span>
 
-<p>找出数组中唯一成单的数字，主要学习异或运算的性质和哈希表的使用。</p>
-<h2 id="解法1-异或运算"><a href="#解法1-异或运算" class="headerlink" title="解法1. 异或运算"></a>解法1. 异或运算</h2><p>异或运算的三个性质</p>
-<ul>
-<li>任何数和0做异或，结果仍是原来的数<br>  $ a \bigoplus 0 &#x3D; a $</li>
-<li>任何数和自身做异或结果是0<br>  $ a \bigoplus$ a &#x3D; 0 $</li>
-<li>异或运算满足交换律和结合律<br>  $ a \bigoplus b \bigoplus a &#x3D; b \bigoplus a \bigoplus a &#x3D; b $<br>因此数组中所有元素异或即可得到单个的元素。时间复杂度O(n)<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">singleNumber</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">ans</span> <span class="hljs-operator">=</span> nums[<span class="hljs-number">0</span>];<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; i &lt; nums.length; i++)&#123;<br>            ans ^= nums[i];<br>        &#125;<br><br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+
+
+<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><h3 id="二分"><a href="#二分" class="headerlink" title="二分"></a>二分</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//先写check函数，想一下check如何更新区间</span><br><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">binary_search</span><span class="hljs-params">(<span class="hljs-type">int</span> left, <span class="hljs-type">int</span> right)</span><br>&#123;<br>    <span class="hljs-comment">// 不用(left + right)/2 是为了防止整数溢出</span><br>    <span class="hljs-type">int</span> <span class="hljs-variable">mid</span> <span class="hljs-operator">=</span> left + (right - left) / <span class="hljs-number">2</span>; <br>	<span class="hljs-keyword">while</span>(left &lt; right)<br>	&#123;<br>		<span class="hljs-keyword">if</span>(check(mid)) <br>            right = mid;<br>		<span class="hljs-keyword">else</span> <br>            left = mid + <span class="hljs-number">1</span>;<br>        mid = left + (right - left) / <span class="hljs-number">2</span>;<br>	&#125;<br>	<span class="hljs-keyword">return</span> mid;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><pre><code class=" mermaid">stateDiagram
+    java.util.Collection&amp;nbsp[I] --&gt; java.util.List&amp;nbsp[I]
+    java.util.List&amp;nbsp[I] --&gt; java.util.ArrayList&amp;nbsp[C]
+    java.util.List&amp;nbsp[I] --&gt; java.util.LinkedList&amp;nbsp[C]
+    java.util.List&amp;nbsp[I] --&gt; java.util.Vector&amp;nbsp[C]
+    java.util.Vector&amp;nbsp[C] --&gt; java.util.Stack&amp;nbsp[C]
+
+    java.util.Collection&amp;nbsp[I] --&gt; java.util.Set&amp;nbsp[I]
+    java.util.Set&amp;nbsp[I] --&gt; java.util.HashSet&amp;nbsp[C]   
+    java.util.Set&amp;nbsp[I] --&gt; java.util.SortedSet&amp;nbsp[I]
+    java.util.SortedSet&amp;nbsp[I] --&gt; java.util.TreeSet&amp;nbsp[C]
+
+    java.util.Collection&amp;nbsp[I] --&gt; java.util.Queue&amp;nbsp[I]
+    java.util.Queue&amp;nbsp[I] --&gt; java.util.Deque&amp;nbsp[I]
+    java.util.Queue&amp;nbsp[I] --&gt; java.util.PriorityQueue&amp;nbsp[C]
+</code></pre>
+<pre><code class=" mermaid">stateDiagram
+    java.util.Map&amp;nbsp[I] --&gt; java.util.SortedMap&amp;nbsp[I]
+    java.util.SortedMap&amp;nbsp[I] --&gt; java.util.TreeMap&amp;nbsp[C]
+    java.util.Map&amp;nbsp[I] --&gt; java.util.Hashtable&amp;nbsp[C]
+    java.util.Map&amp;nbsp[I] --&gt; java.util.HashMap&amp;nbsp[C]
+    java.util.Map&amp;nbsp[I] --&gt; java.util.LinkedHashMap&amp;nbsp[C]
+    java.util.Map&amp;nbsp[I] --&gt; java.util.WeakHashMap&amp;nbspC]
+</code></pre>
+
+<p>[I]: 接口 &amp;nbsp;&amp;nbsp; [C]: 类<br>其中，Vector、Stack、HashTable线程安全，但已经基本不用了。</p>
+<h3 id="数组-Array或ArrayList"><a href="#数组-Array或ArrayList" class="headerlink" title="数组 - Array或ArrayList"></a>数组 - Array或ArrayList</h3><ul>
+<li>get和set操作时间上都是O(1)</li>
+<li>add和remove都是O(N)</li>
+<li>ArrayList添加元素不必考虑越界，超出容量时自动扩张</li>
+<li>Vector相比于ArrayList，实现了线程安全，但效率较低</li>
 </ul>
-<h2 id="解法2-哈希表"><a href="#解法2-哈希表" class="headerlink" title="解法2. 哈希表"></a>解法2. 哈希表</h2><p>使用哈希表存储每个数字和该数字出现的次数。最后次数为1的就是单个数字</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java">Class Solution &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">singleNumber</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums)</span> &#123;<br>        Map&lt;Integer, Integer&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>        <span class="hljs-keyword">for</span>(Integer i : nums)&#123;<br>            <span class="hljs-type">Integer</span> <span class="hljs-variable">count</span> <span class="hljs-operator">=</span> map.get(i);<br>            map.put(i, count == <span class="hljs-literal">null</span> ? <span class="hljs-number">1</span> : ++count;);<br>        &#125;<br><br>        <span class="hljs-keyword">for</span>(Integer i : nums)&#123;<br>            <span class="hljs-keyword">if</span>(map.get(i) == <span class="hljs-number">1</span>)<br>                <span class="hljs-keyword">return</span> i;<br>        &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>时间复杂度O(n),空间复杂度O(n)</p>
+<h3 id="链表-LinkedList"><a href="#链表-LinkedList" class="headerlink" title="链表 - LinkedList"></a>链表 - LinkedList</h3><ul>
+<li>get和set操作时间上都是O(N)</li>
+<li>add和remove都是O(1)<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java">LinkedList&lt;String&gt; linkedList = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;&gt;();<br>linkedList.add(<span class="hljs-string">&quot;addd&quot;</span>);<span class="hljs-comment">//add</span><br>linkedList.set(<span class="hljs-number">0</span>,<span class="hljs-string">&quot;s&quot;</span>); <span class="hljs-comment">//set，必须先保证 linkedList中已经有第0个元素</span><br><span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span>  linkedList.get(<span class="hljs-number">0</span>);<span class="hljs-comment">//get</span><br>linkedList.contains(<span class="hljs-string">&quot;s&quot;</span>);<span class="hljs-comment">//查找</span><br>linkedList.remove(<span class="hljs-string">&quot;s&quot;</span>);<span class="hljs-comment">//删除</span><br><span class="hljs-comment">// 以上方法也适用于ArrayList</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="队列-LinkedList"><a href="#队列-LinkedList" class="headerlink" title="队列 - LinkedList"></a>队列 - LinkedList</h3><ul>
+<li>LinkedList实现了Deque，可以作为双向&#x2F;单向队列</li>
+<li>PriorityQueue实现了带优先级的队列<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java">Deque&lt;Integer&gt; deque = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;&gt;();<br><span class="hljs-comment">// 尾部入队，区别在于如果失败了，add方法会抛出一个IllegalStateException异常，而offer方法返回false</span><br>deque.offer(<span class="hljs-number">122</span>);<br>deque.add(<span class="hljs-number">122</span>);<br><span class="hljs-comment">// 头部出队，区别在于如果失败了，remove方法抛出一个NoSuchElementException异常，而poll方法返回false</span><br><span class="hljs-type">int</span> <span class="hljs-variable">head</span> <span class="hljs-operator">=</span> deque.poll();<span class="hljs-comment">//删除第一个元素并返回</span><br>head = deque.remove();  <span class="hljs-comment">//删除第一个元素并返回</span><br><span class="hljs-comment">// 头部出队，区别在于如果失败了，element方法抛出一个NoSuchElementException异常，而peek方法返回null。</span><br>head = deque.peek();    <span class="hljs-comment">//返回第一个元素，不删除</span><br>head = deque.element(); <span class="hljs-comment">//返回第一个元素，不删除</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="栈-ArrayDeque"><a href="#栈-ArrayDeque" class="headerlink" title="栈 - ArrayDeque"></a>栈 - ArrayDeque</h3><ul>
+<li>Stack实现了后进先出，但继承自Vector，线程安全但效率低，因此不推荐使用</li>
+<li>ArrayDeque实现了Deque，可以作为栈（但仍可以违反栈的单端操作规则）<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">Deque&lt;Integer&gt; stack = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayDeque</span>&lt;Integer&gt;();<br>stack.push(<span class="hljs-number">12</span>);<span class="hljs-comment">//尾部入栈</span><br>stack.push(<span class="hljs-number">16</span>);<span class="hljs-comment">//尾部入栈</span><br><span class="hljs-type">int</span> <span class="hljs-variable">tail</span> <span class="hljs-operator">=</span> stack.pop();<span class="hljs-comment">//尾部出栈，并删除该元素</span><br>tail = stack.peek();<span class="hljs-comment">//尾部出栈，不删除该元素</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="双端队列-Deque"><a href="#双端队列-Deque" class="headerlink" title="双端队列 - Deque"></a>双端队列 - Deque</h3><ul>
+<li>ArrayDeque基于数组实现了双端队列</li>
+<li>LinkedList基于双向链表实现了双端队列</li>
+<li>另有两个线程安全的实现类：ConcurrentLinkedDeque, LinkedBlockingDeque<pre><code class=" mermaid">classDiagram
+    Queue &lt;|-- Deque
+    Deque ..|&gt; ArrayDeque
+    Deque ..|&gt; LinkedList
+    &lt;&lt;interface&gt;&gt; Queue
+    &lt;&lt;interface&gt;&gt; Deque
+</code></pre></li>
+<li>Deque和Queue提供了两套API，一种抛出异常，另一种返回特殊值</li>
+<li>Deque额外提供了First、Last后缀的方法。<table>
+<thead>
+<tr>
+<th align="center">操作类型</th>
+<th align="center">抛出异常</th>
+<th align="center">返回特殊值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">插入</td>
+<td align="center">add(e)</td>
+<td align="center">offer(e)</td>
+</tr>
+<tr>
+<td align="center">移除</td>
+<td align="center">remove()</td>
+<td align="center">poll()</td>
+</tr>
+<tr>
+<td align="center">拾取</td>
+<td align="center">element()</td>
+<td align="center">peek()</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><h3 id="KMP"><a href="#KMP" class="headerlink" title="KMP"></a>KMP</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 构建next数组</span><br><span class="hljs-type">int</span>[] next = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[p.length];<br>next[<span class="hljs-number">0</span>] = -<span class="hljs-number">1</span>;<br><span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>, j = -<span class="hljs-number">1</span>;<br><span class="hljs-keyword">while</span> (i &lt; p.length - <span class="hljs-number">1</span>) &#123;<br>    <span class="hljs-keyword">if</span> (j == -<span class="hljs-number">1</span> || p[i] == p[j]) &#123;<br>        ++i;<br>        ++j;<br>        next[i] = j;<br>    &#125; <span class="hljs-keyword">else</span><br>        j = next[j];<br>&#125;<br><br><span class="hljs-comment">// 匹配</span><br>i = <span class="hljs-number">0</span>;<br>j = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">while</span> (i &lt; s.length &amp;&amp; j &lt; p.length) &#123;<br>    <span class="hljs-keyword">if</span> (j == -<span class="hljs-number">1</span> || s[i] == p[j]) &#123;<br>        ++i;<br>        ++j;<br>    &#125; <span class="hljs-keyword">else</span><br>        j = next[j];<br>&#125;<br><br><span class="hljs-keyword">if</span> (j == p.length)<br>    <span class="hljs-keyword">return</span> i - j;<br><span class="hljs-keyword">else</span><br>    <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
 
+<h2 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h2><h3 id="DFS"><a href="#DFS" class="headerlink" title="DFS"></a>DFS</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">void</span> <span class="hljs-title function_">dfs</span><span class="hljs-params">(TreeNode root)</span> &#123;<br>    <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br>    dfs(root.left);<br>    dfs(root.right);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="BFS"><a href="#BFS" class="headerlink" title="BFS"></a>BFS</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">void</span> <span class="hljs-title function_">bfs</span><span class="hljs-params">(TreeNode root)</span> &#123;<br>    Queue&lt;TreeNode&gt; queue = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayDeque</span>&lt;&gt;();<br>    queue.add(root);<br>    <span class="hljs-keyword">while</span> (!queue.isEmpty()) &#123;<br>        <span class="hljs-type">TreeNode</span> <span class="hljs-variable">node</span> <span class="hljs-operator">=</span> queue.poll(); <span class="hljs-comment">// Java 的 pop 写作 poll()</span><br>        <span class="hljs-keyword">if</span> (node.left != <span class="hljs-literal">null</span>) &#123;<br>            queue.add(node.left);<br>        &#125;<br>        <span class="hljs-keyword">if</span> (node.right != <span class="hljs-literal">null</span>) &#123;<br>            queue.add(node.right);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -359,32 +435,9 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/LeetCode/" class="category-chain-item">LeetCode</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
   
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/LeetCode/">#LeetCode</a>
       
         <a href="/tags/%E7%AE%97%E6%B3%95/">#算法</a>
       
@@ -398,8 +451,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>LeetCode 136 只出现一次的数字</div>
-      <div>https://chanpero.github.io/2022/10/16/LeetCode-136-只出现一次的数字/</div>
+      <div>算法模板-Java</div>
+      <div>https://chanpero.github.io/2022/11/17/算法模板-Java/</div>
     </div>
     <div class="license-meta">
       
@@ -411,7 +464,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年10月16日</div>
+          <div>2022年11月17日</div>
         </div>
       
       
@@ -455,18 +508,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/" title="JavaSE 复习">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">JavaSE 复习</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/12/01/Windows%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BADash%E7%B3%BB%E7%BB%9F/" title="Windows平台搭建Dash系统">
-                        <span class="hidden-mobile">Windows平台搭建Dash系统</span>
+                      <a href="/2022/11/08/JavaSE-%E5%A4%8D%E4%B9%A0/" title="JavaSE 复习">
+                        <span class="hidden-mobile">JavaSE 复习</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -554,11 +601,18 @@
   
 
 
-  
-  
 
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
 
-
+    Fluid.events.registerRefreshCallback(function() {
+      if ('mermaid' in window) {
+        mermaid.init();
+      }
+    });
+  });
+</script>
 
 
 
@@ -776,49 +830,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
-          }
-        });
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 
