@@ -1,0 +1,1169 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Myfavicon.ico">
+  <link rel="icon" href="/img/Myfavicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="chanper">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="第 1 章 - 走入并行世界基本知识点 同步：一旦开始，调用者必须等到方法调用返回后，才能继续后续的行为 异步：一旦开始，调用就会立即返回，调用者可以继续后续的操作   并发：多个任务交替执行 并行：多个任务同时执行   临界区：表示一种公共资源或共享数据，可以被多个线程使用，但同一时间只能有一个线程使用。一旦临界区资源被占用，其它线程想要使用就必须等待   阻塞：一个线程占用了临界区资源，其它线">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 并发">
+<meta property="og:url" content="https://chanpero.github.io/2022/11/20/Java-%E5%B9%B6%E5%8F%91/index.html">
+<meta property="og:site_name">
+<meta property="og:description" content="第 1 章 - 走入并行世界基本知识点 同步：一旦开始，调用者必须等到方法调用返回后，才能继续后续的行为 异步：一旦开始，调用就会立即返回，调用者可以继续后续的操作   并发：多个任务交替执行 并行：多个任务同时执行   临界区：表示一种公共资源或共享数据，可以被多个线程使用，但同一时间只能有一个线程使用。一旦临界区资源被占用，其它线程想要使用就必须等待   阻塞：一个线程占用了临界区资源，其它线">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-20T11:42:37.000Z">
+<meta property="article:modified_time" content="2022-11-20T13:28:35.780Z">
+<meta property="article:author" content="chanper">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="并发">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Java 并发 </title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"chanpero.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"e6fbf52343bffac933f91eae00e480dc","google":"UA-245755945-1","gtag":"G-89BD3B3114","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1InH4XckKf2mHSUQuLHRajZH-gzGzoHsz","app_key":"jDwLBVwoqcNPXW57ymIDicVB","server_url":"https://1inh4xck.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?e6fbf52343bffac933f91eae00e480dc";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript('https://www.google-analytics.com/analytics.js', function() {
+          window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) };
+          ga.l = +new Date;
+          ga('create', 'UA-245755945-1', 'auto');
+          ga('send', 'pageview');
+        });
+      }
+    </script>
+  
+
+  
+    <!-- Google gtag.js -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript('https://www.googletagmanager.com/gtag/js?id=G-89BD3B3114', function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-89BD3B3114');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>chanper</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/banner.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Java 并发"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-11-20 19:42" pubdate>
+          2022年11月20日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          82 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Java 并发</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="第-1-章-走入并行世界"><a href="#第-1-章-走入并行世界" class="headerlink" title="第 1 章 - 走入并行世界"></a>第 1 章 - 走入并行世界</h1><h2 id="基本知识点"><a href="#基本知识点" class="headerlink" title="基本知识点"></a>基本知识点</h2><ul>
+<li>同步：一旦开始，调用者必须等到方法调用返回后，才能继续后续的行为</li>
+<li>异步：一旦开始，调用就会立即返回，调用者可以继续后续的操作</li>
+</ul>
+<ul>
+<li>并发：多个任务交替执行</li>
+<li>并行：多个任务同时执行</li>
+</ul>
+<ul>
+<li>临界区：表示一种公共资源或共享数据，可以被多个线程使用，但同一时间只能有一个线程使用。一旦临界区资源被占用，其它线程想要使用就必须等待</li>
+</ul>
+<ul>
+<li>阻塞：一个线程占用了临界区资源，其它线程必须等待，导致线程挂起，就是阻塞</li>
+<li>非阻塞：没有一个线程可以防碍其他线程执行，所有线程都会尝试不断前进</li>
+</ul>
+<p>多线程的活跃性问题：</p>
+<ul>
+<li>死锁：多个线程都占有其它线程需要的资源，且都不释放，从而没有一个线程可以同时拿到所有资源，造成所有线程都进入等待</li>
+<li>饥饿：某一个或多个线程因为种种原因无法获得所需要的资源，导致一直无法执行</li>
+<li>活锁：多个线程在竞争资源时，都主动释放给其它线程使用，导致资源不断在两个线程间跳动，从而没有一个线程可以同时拿到所有资源</li>
+</ul>
+<h2 id="并发级别"><a href="#并发级别" class="headerlink" title="并发级别"></a>并发级别</h2><ul>
+<li>阻塞：其它线程释放资源之前，当前线程无法继续执行（悲观）</li>
+<li>无饥饿：对于公平锁，所有线程遵守先进先出的原则，就不会产生饥饿</li>
+<li>无障碍：任何线程都可以进入临界区，但是一旦检测到冲突就需要回滚（乐观）</li>
+<li>无锁：无锁并行都是无障碍的，任何线程都可以进入临界区，且必然有一个线程可以在有限步内完成操作并离开。通常包含一个无限循环尝试竞争</li>
+<li>无等待：要求所有线程在有限步内完成操作，分为有界无等待和与线程数无关的无等待。典型的如RCU（Read Copy Update），对读不加控制，修改只针对副本，并在合适的时机写回</li>
+</ul>
+<h2 id="并行加速定律"><a href="#并行加速定律" class="headerlink" title="并行加速定律"></a>并行加速定律</h2><pre><code class="hljs">加速比 = 优化前耗时 / 优化后耗时
+</code></pre>
+<ol>
+<li>Amdahl 定律<br>并行优化的效果取决于CPU数量，以及系统中的串行化代码的比例。CPU数量越多，串行化比例越低，优化效果越好。仅增加CPU数量而不降低串行化比例，无法提高系统性能。</li>
+<li>Gustafson 定律<br>只要增加处理器，就能获得更快的速度。如果可被并行化的代码所占比例足够大，那么加速比就能随着处理器数量线性增长。</li>
+</ol>
+<h2 id="回到Java：JMM"><a href="#回到Java：JMM" class="headerlink" title="回到Java：JMM"></a>回到Java：JMM</h2><ul>
+<li>原子性：<ul>
+<li>一个操作不可中断</li>
+<li>对于32位JVM，long和double两个64位数据的读写是不保证原子性的</li>
+</ul>
+</li>
+<li>可见性：<ul>
+<li>一个线程修改了某个共享变量，其它线程是否能够立即得知这个修改。</li>
+<li>原因在于缓存优化、硬件优化、指令重排、编辑器的优化等</li>
+<li>在一个线程中观察另一个线程的变量，它们的值是否能观察到、何时能观察到是没有保证的</li>
+</ul>
+</li>
+<li>有序性：<ul>
+<li>程序在执行时可能会进行指令重排，于原指令的顺序未必一致</li>
+<li>原因在于一条指令的执行，对于CPU来说需要分为多个步骤依次执行，为了提高CPU效率，使用了流水线技术。这样就可能某个步骤需要等另一指令的某个步骤先完成，从而产生中断。为了尽可能减少流水线的中断，因此需要做指令重排</li>
+<li>不能重排的指令：Happen-Before规则 保证指令重排不会破坏原有的语义<ul>
+<li>程序顺序原则：在一个线程内保证语义的串行性</li>
+<li>volatile规则：volatile变量的写先于读发生，保证了volatile变量的可见性</li>
+<li>锁规则：unlock必然发生在随后的lock前</li>
+<li>传递性：A先于B，B先于C，则A必先于C</li>
+<li>线程<code>start()</code>方法先于它的每一个动作</li>
+<li>线程的所有操作先于线程的终结<code>Thread.join()</code></li>
+<li>线程的中断<code>interrupt()</code>先于被中断线程的代码</li>
+<li>对象构造函数的执行、结束先于<code>finalize()</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="第-2-章-Java并行程序基础"><a href="#第-2-章-Java并行程序基础" class="headerlink" title="第 2 章 - Java并行程序基础"></a>第 2 章 - Java并行程序基础</h1><h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><ul>
+<li>进程是程序的基本执行实体，是线程的容器</li>
+<li>线程是轻量级进程，是程序执行的最小单位</li>
+<li>线程的切换和调度的成本远远小于进程</li>
+<li>线程的状态：<ul>
+<li>NEW：刚刚创建，线程还没开始执行</li>
+<li>RUNNABLE：线程正在执行，拥有所需的一切资源</li>
+<li>BLOCKED：遇到sychronized同步块暂停执行，进入同步队列(尝试获取锁但失败的线程)，直到获得请求的锁</li>
+<li>WAITING：无限等待，等待一些特殊事件，如notify(), join()</li>
+<li>TIMED_WAITING：有限等待</li>
+<li>TERMINATED：线程执行完毕</li>
+</ul>
+</li>
+</ul>
+<pre><code class=" mermaid">stateDiagram
+  NEW --&gt; RUNNABLE: 启动
+  RUNNABLE --&gt; BLOCKED: synchronized
+  BLOCKED --&gt; RUNNABLE: synchronized
+  RUNNABLE --&gt; WAITING: wait()
+  WAITING --&gt; RUNNABLE: notify()
+  RUNNABLE --&gt; TIMED_WAITING: wait()
+  TIMED_WAITING --&gt; RUNNABLE: notify()
+  RUNNABLE --&gt; TERMINATED: 结束
+</code></pre>
+
+
+<h2 id="线程的基本操作"><a href="#线程的基本操作" class="headerlink" title="线程的基本操作"></a>线程的基本操作</h2><ul>
+<li><p>新建线程：</p>
+<ul>
+<li>extends Thread()::run()</li>
+<li>implements Runnable::run()</li>
+<li>new Thread(Runnable)::start()</li>
+</ul>
+</li>
+<li><p>终止线程：</p>
+<ul>
+<li>Thread::stop(), 不推荐使用。因为会立即终止线程，并释放持有的锁，可能破坏对象一致性</li>
+</ul>
+</li>
+<li><p>线程中断：</p>
+<ul>
+<li>Thread::interrupt() 中断线程</li>
+<li>Thread::isInterrupted() 判断是否中断</li>
+<li>static boolean Thread.interrupted() 判断是否中断，并清除当前中断状态</li>
+<li>Thread::sleep()方法由于中断抛出异常时，会清除中断标志位</li>
+</ul>
+</li>
+<li><p>线程等待</p>
+<ul>
+<li>Object::wait() 对象所在线程停止运行，释放CPU和锁资源，进入等待队列</li>
+<li>Object::notify() 随机唤醒一个等待队列中的线程进入同步队列</li>
+<li>Object::notifyAll() 唤醒等待队列中的的所有线程进入同步队列</li>
+<li>工作原理：<ul>
+<li>每个Object拥有一个等待该对象锁的<code>等待队列</code>，和一个尝试获取锁但失败的线程<code>同步队列</code></li>
+<li>wait()和notify()执行前会先获取Object对象的监视器，执行后释放监视器。因此调用必须包含在对应的synchronized块中</li>
+<li>wait()会主动释放目标对象锁，而sleep()不会释放锁资源，仅让出CPU，且不能被唤醒</li>
+<li>notify()不会立即释放CPU和锁资源，而是等同步代码执行完毕才释放</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>线程挂起和恢复 – deprecated</p>
+<ul>
+<li>Thread::suspend() 挂起线程且不释放任何锁资源。挂起的线程竟然属于Runnable状态</li>
+<li>Thread::resume()</li>
+</ul>
+</li>
+<li><p>等待线程结束和谦让</p>
+<ul>
+<li>Thread::join( [millis] ) 无限&#x2F;有限等待，直到目标线程，也就是调用的对象线程执行完毕</li>
+<li>Thread::yield() 让出当前CPU</li>
+<li>join()方法底层是通过wait()实现的，调用的线程执行完毕后会执行notifyAll()唤醒所有等待队列的线程进入同步队列</li>
+</ul>
+</li>
+</ul>
+<h2 id="Volatile"><a href="#Volatile" class="headerlink" title="Volatile"></a>Volatile</h2><ul>
+<li>volatile关键字告诉JVM,该变量极有可能会被某些程序或者线程修改</li>
+<li>volatile有助于操作的原子性,可见性,有序性</li>
+<li>但volatile不能代替锁，不保证一些复合操作的原子性</li>
+</ul>
+<h2 id="线程组-ThreadGroup"><a href="#线程组-ThreadGroup" class="headerlink" title="线程组 - ThreadGroup"></a>线程组 - ThreadGroup</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">ThreadGroup</span> <span class="hljs-variable">tg</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ThreadGroup</span>( <span class="hljs-string">&quot;PrintGroup&quot;</span>);<br><span class="hljs-type">Thread</span> <span class="hljs-variable">t1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(tg, <span class="hljs-keyword">new</span> <span class="hljs-title class_">ThreadGroupName</span>(), <span class="hljs-string">&quot;T1&quot;</span>);<br><span class="hljs-type">Thread</span> <span class="hljs-variable">t2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(tg, <span class="hljs-keyword">new</span> <span class="hljs-title class_">ThreadGroupName</span>(), <span class="hljs-string">&quot;T2&quot;</span>);<br>t1.start();<br>t2.start();<br>System.out.println(tg.activeCount()); <span class="hljs-comment">// 获得活动线程总数</span><br>tg.list();  <span class="hljs-comment">//打印线程组中所有线程</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="守护线程-Daemon"><a href="#守护线程-Daemon" class="headerlink" title="守护线程 - Daemon"></a>守护线程 - Daemon</h2><ul>
+<li>完成一些系统性服务，例如GC线程、JIT线程<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Thread</span> <span class="hljs-variable">t</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DaemonT</span>();<br>t.setDaemon(<span class="hljs-literal">true</span>);  <span class="hljs-comment">// 必须在守护线程开始之前设置，否则当作普通的用户线程执行</span><br>t.start();  <span class="hljs-comment">// 只要主线程结束，整个程序就会结束，不管守护线程是否结束</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="线程优先级"><a href="#线程优先级" class="headerlink" title="线程优先级"></a>线程优先级</h2><ul>
+<li>Java的线程优先级从低到高为1-10</li>
+<li>Thread::setPriority(int)</li>
+<li>优先级的后果不可预测，无法精确控制。因此如果要求严格，仍需要自己在应用层解决线程调度问题</li>
+</ul>
+<h2 id="线程安全-Synchronized"><a href="#线程安全-Synchronized" class="headerlink" title="线程安全 - Synchronized"></a>线程安全 - Synchronized</h2><ul>
+<li>对同步的代码加锁，使得每次只有一个线程进入同步块，从而保证现成的安全性</li>
+<li>如果指定加锁对象，则进入同步代码前要先获得指定对象的锁</li>
+<li>如果作用于实例方法，相当于对当前实例加锁，进入同步代码前要获得当前实例的锁</li>
+<li>如果作用于静态方法，相当于对当前类加锁，进入同步代码前要获得当前类的锁</li>
+<li>synchronized还可以保证线程间的可见性和有序性（使多线程串行执行）</li>
+</ul>
+<h2 id="并发下的隐蔽错误"><a href="#并发下的隐蔽错误" class="headerlink" title="并发下的隐蔽错误"></a>并发下的隐蔽错误</h2><ul>
+<li>如非线程安全的ArrayList, HashMap, Integer等等</li>
+<li>jps查看系统运行的Java程序，jstack pid 打印指定java进程的内部线程及其堆栈</li>
+</ul>
+<hr>
+<h1 id="第3章-JDK并发包"><a href="#第3章-JDK并发包" class="headerlink" title="第3章 - JDK并发包"></a>第3章 - JDK并发包</h1><h2 id="同步控制工具"><a href="#同步控制工具" class="headerlink" title="同步控制工具"></a>同步控制工具</h2><h3 id="ReentrantLock"><a href="#ReentrantLock" class="headerlink" title="ReentrantLock"></a>ReentrantLock</h3><blockquote>
+<p>可重入锁，性能和synchronized相当，但使用更灵活，提供额外的高级功能</p>
+</blockquote>
+<ul>
+<li>ReentrantLock::lock() 获得锁，如果锁已经被占用，则等待</li>
+<li>ReentrantLock::lock(boolean fair) 公平锁，维护一个等待队列，先来后到</li>
+<li>ReentrantLock::lockInterruptibly() 获得锁，但优先响应中断</li>
+<li>ReentrantLock::tryLock() 尝试获得锁，不等待直接返回。如果成功返回true，失败返回false。</li>
+<li>ReentrantLock::tryLock(time, TimeUnit) 在给定时间内尝试获取锁</li>
+<li>ReentrantLock::unlock 释放锁</li>
+</ul>
+<h3 id="Condition"><a href="#Condition" class="headerlink" title="Condition"></a>Condition</h3><blockquote>
+<p>与重入锁关联的wait &#x2F; notify机制</p>
+</blockquote>
+<ul>
+<li>Lock::newCondition()</li>
+<li>Condition::await() 使当前线程进入等待队列，同时释放当前锁。要求先获得相关锁</li>
+<li>Condition::awaitUninterruptibly() 使当前线程进入等待队列，但等待时不响应中断。要求先获得相关锁</li>
+<li>Condition::signal() &#x2F; signalAll() 唤醒一个&#x2F;所有等待队列中的线程。要求先获得相关锁</li>
+</ul>
+<h3 id="Semaphore"><a href="#Semaphore" class="headerlink" title="Semaphore"></a>Semaphore</h3><blockquote>
+<ol>
+<li>基于许可的多线程控制<br>  为每个访问共享区间的线程派发一个许可，拿到许可的线程才能进入共享区间活动。完成任务离开共享区间时，必须归还许可，以确保后续的线程可以正常取得许可。如果许可用完，则线程必须先等待。</li>
+<li>排他锁和共享锁<br>  排他模式下，只有一个线程可以访问共享变量。而共享模式下，则允许多个线程同时访问共享变量。例如，重入锁是排他的，信号量是共享的。</li>
+</ol>
+</blockquote>
+<p>信号量是对锁的扩展，允许多个线程同时访问共享资源</p>
+<ul>
+<li>Semaphore(int permits, [boolean fair]) 构造信号量，指定准入数，可选是否公平</li>
+<li>Semaphore::acquire(), Semaphore::acquireUninterruptibly()</li>
+<li>Semaphore::tryAcquire(), Semaphore::tryAcquire(timeout, TimeUnit)</li>
+<li>Semaphore::release()</li>
+</ul>
+<h3 id="ReadWriteLock"><a href="#ReadWriteLock" class="headerlink" title="ReadWriteLock"></a>ReadWriteLock</h3><blockquote>
+<p>JDK5提供的读写分离锁，可以有效地减少锁竞争，提升系统性能。</p>
+</blockquote>
+<ul>
+<li>读写锁的访问约束：<ul>
+<li>读与读不互斥</li>
+<li>读与写互斥</li>
+<li>写与写互斥</li>
+</ul>
+</li>
+<li>API:<ul>
+<li>实现类：ReentrantReadWriteLock()</li>
+<li>ReadWriteLock::readLock(), ReadWriteLock::writeLock()</li>
+<li>锁操作和ReentrantLock基本一致</li>
+</ul>
+</li>
+</ul>
+<h3 id="CountDownLatch"><a href="#CountDownLatch" class="headerlink" title="CountDownLatch"></a>CountDownLatch</h3><blockquote>
+<p>倒计数器，Latch：门闩。通常用来控制线程等待，让某一个线程等倒计数结束再开始执行</p>
+</blockquote>
+<ul>
+<li>CountDownLatch(int count) 指定数量的线程完成任务后，等待在Latch上的线程才能继续执行</li>
+<li>CountDownLatch::countDown() 通知Latch一个线程已经完成了任务，计数器减一</li>
+<li>CountDownLatch::await() 设置Latch阻止线程继续执行，直到指定数量的线程执行至此</li>
+</ul>
+<h3 id="CyclicBarrier"><a href="#CyclicBarrier" class="headerlink" title="CyclicBarrier"></a>CyclicBarrier</h3><blockquote>
+<p>循环栅栏，每若干个线程任务执行完，调用一次指定的动作</p>
+</blockquote>
+<ul>
+<li>CyclicBarrier(int parties, Runnable barrierAction) 每若干个任务完成，执行一次barrierAction</li>
+<li>CyclicBarrier::await() 设置Barrier阻止线程继续执行，直到指定数量的线程执行至此</li>
+<li>BrokenBarrierException 表示当前Barrier已经破损，可能无法等待所有线程到齐。例如一个线程被中断，其它线程就会收到该异常</li>
+</ul>
+<h3 id="LockSupport"><a href="#LockSupport" class="headerlink" title="LockSupport"></a>LockSupport</h3><blockquote>
+<p>线程阻塞工具，可以在线程内任意位置让线程阻塞，不需要先获得对象锁，也不抛出InterruptedException，弥补了suspend&#x2F;resume导致线程无法继续执行的情况</p>
+</blockquote>
+<ul>
+<li>static LockSupport::park(), parkNanos(), parkUntil() (有限)阻塞当前线程。支持中断响应，通过Thread.interrupted()获得中断标记</li>
+<li>static LockSupport::unpark(thread) 类似信号量机制给予线程继续执行的许可，但许可数量仅为1</li>
+</ul>
+<h3 id="深度理解-AbstractQueuedSynchronizer"><a href="#深度理解-AbstractQueuedSynchronizer" class="headerlink" title="深度理解 AbstractQueuedSynchronizer"></a>深度理解 AbstractQueuedSynchronizer</h3><blockquote>
+<p>重入锁、信号量内部各有一个AbstractQueuedSynchronizer的子类Sync。<br>Sync内部维护了一个同步等待队列，保存等待在这个锁上的线程，如lock()引起的等待。<br>还维护了一个条件变量等待队列，保存等待在条件变量上的等待变量，如Condition.await()引起阻塞的线程。<br>一个重入锁可以生成多个条件变量，因此可能有多个条件变量等待队列<br>AbstractQueuedSynchronizer是重入锁、信号量、读写锁等并发工具的核心</p>
+</blockquote>
+<h3 id="Guava-和-RateLimiter"><a href="#Guava-和-RateLimiter" class="headerlink" title="Guava 和 RateLimiter"></a>Guava 和 RateLimiter</h3><blockquote>
+<p>Guava是Google的一个核心库，常用作项目的基础工具库。RateLimiter是其中的一个限流工具库<br>为了维持服务器的负载平稳，需要进行限流措施。普通的平均限流过于简单粗暴。经典的两种限流算法：</p>
+<ul>
+<li>漏桶算法：利用一个缓冲区，当有请求进入系统时，无论请求的速率如何，都先保存在缓存区内，然后再以固定的流速流出缓存区并加以处理。特点是无论外部请求压力如何，总是以固定的流速处理数据。漏桶容积和流出速率是该算法的两个重要参数。</li>
+<li>令牌桶算法：桶中存放令牌，程序只有拿到令牌才能对请求进行处理。没有令牌则要么丢弃请求，要么等待可用令牌。该算法在单位时间产生一定量的令牌存入桶中，桶的容量有限，且令牌数不会超过桶的容量。</li>
+</ul>
+<p>Guava中的RateLimiter采用了令牌桶算法</p>
+</blockquote>
+<h2 id="线程复用-ThreadPool"><a href="#线程复用-ThreadPool" class="headerlink" title="线程复用 - ThreadPool"></a>线程复用 - ThreadPool</h2><blockquote>
+<p>虽然与进程相比，线程是一种轻量级的工具，但其创建和销毁依然需要花费时间，线程过多容易导致创建和销毁的开销大于真实工作的时间，同时大量线程会抢占宝贵的内存资源，导致OOM，给GC带来压力。因此，对线程的使用需要掌握一个度。</p>
+</blockquote>
+<h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><p>为了避免系统频繁的创建和销毁线程，利用线程池技术对线程进行复用<br>线程池负责对线程进行控制和管理。其中有活跃线程，需要时直接拿来用，完成工作后不关闭，返回线程池，方便其它任务执行。</p>
+<h3 id="JDK-Executor框架"><a href="#JDK-Executor框架" class="headerlink" title="JDK - Executor框架"></a>JDK - Executor框架</h3><ul>
+<li>Executors 线程池工厂，返回ExecutorService (ThreadPoolExecutor) 对象，表示一个线程池<ul>
+<li><code>newFixedThreadPool</code>: 返回一个固定线程数量的线程池。新任务提交时，若有空闲线程立即执行，否则暂存在任务队列中</li>
+<li><code>newSingleThreadExecutor</code>: 返回只有一个线程的线程池</li>
+<li><code>newCachedThreadPool</code>: 返回一个可调整线程数量的线程池。新任务提交时，优先使用可复用线程，否则创建新线程处理任务。所有线程完成后返回线程池，空闲线程有存活时间</li>
+<li><code>newSingleThreadScheduledExecutor</code>: 返回一个ScheduledExecutorService对象，线程数量为1。用于实现延时、周期任务。如果中途任务出现异常，后续执行都会被中断。<ul>
+<li>schedule(Runnable, delay, TimeUnit) 延迟执行任务</li>
+<li>scheduleAtFixedRate(Runnable, initialDelay, period, TimeUnit) 固定速率循环执行任务。但必须等上一个任务执行完才会开始下一个</li>
+<li>scheduleWithFixedDelay(Runnable, initialDelay, delay, TimeUnit) 上一个任务执行完间隔delay后开始下一个</li>
+</ul>
+</li>
+<li><code>newScheduledThreadPool</code>: 返回一个ScheduledExecutorService对象，线程数量可指定</li>
+</ul>
+</li>
+</ul>
+<pre><code class=" mermaid">classDiagram
+  Executor &lt;|-- ExecutorService
+  &lt;&lt;interface&gt;&gt; Executor
+  Executor: + execute(Runnable)
+  &lt;&lt;interface&gt;&gt; ExecutorService
+  ExecutorService: + shutdown()
+  ExecutorService: + isTerminated()
+  ExecutorService: + submit()
+  ExecutorService: + ......()
+
+  AbstractExecutorService ..|&gt; ExecutorService
+  AbstractExecutorService &lt;|-- ThreadPoolExecutor
+  ThreadPoolExecutor: +ThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue&lt;Runnable&gt; workQueue)
+</code></pre>
+
+
+<h3 id="线程池内部实现-ThreadPoolExecutor"><a href="#线程池内部实现-ThreadPoolExecutor" class="headerlink" title="线程池内部实现 - ThreadPoolExecutor"></a>线程池内部实现 - ThreadPoolExecutor</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java">ThreadPoolExecutor(<span class="hljs-type">int</span> corePoolSize,      <span class="hljs-comment">// 指定常驻线程数量</span><br>                   <span class="hljs-type">int</span> maximumPoolSize,   <span class="hljs-comment">// 指定允许的最大线程数量</span><br>                   <span class="hljs-type">long</span> keepAliveTime,    <span class="hljs-comment">// 当线程数量超过corePoolSize后，多余的空闲线程的存活时间</span><br>                   TimeUnit unit,         <span class="hljs-comment">// keepAliveTime单位</span><br>                   BlockingQueue&lt;Runnable&gt; workQueue, <span class="hljs-comment">// 任务队列，保存被提交但尚未被执行的任务</span><br>                   ThreadFactory threadFactory,       <span class="hljs-comment">// 线程工厂，用于创建线程</span><br>                   RejectedExecutionHandler handler   <span class="hljs-comment">// 任务过多时的拒绝策略</span><br>                   )<br></code></pre></td></tr></table></figure>
+
+
+<h4 id="任务队列-BlockingQueue"><a href="#任务队列-BlockingQueue" class="headerlink" title="任务队列 - BlockingQueue"></a>任务队列 - BlockingQueue</h4><p>指被提交但未执行的任务队列，一个BlockingQueue接口的对象，仅用于存放Runnable对象。常用的队列实现有：</p>
+<ul>
+<li><code>SynchronousQueue</code>: 直接提交的队列，没有容量，来一个任务执行一个，没有多余线程则执行拒绝策略</li>
+<li><code>ArrayBlockingQueue</code>: 有界任务队列，构造时指定容量</li>
+<li><code>LinkedBlockingQueue</code>: 无界任务队列，任务繁忙时会一直创建线程执行，直至资源耗尽</li>
+<li><code>PriorityBlockingQueue</code>: 带有执行优先级的无界队列</li>
+</ul>
+<p>使用自定义线程池时，需要根据应用的具体情况，选择合适的并发队列为任务做缓冲。当线程资源紧张时，不同的并发队列对系统行为和性能的影响均不同。</p>
+<pre><code class=" mermaid">graph LR
+  任务提交 -- 小于corePoolSize --&gt; end1(分配线程执行)
+  任务提交 -- 大于corePoolSize --&gt; 提交到等待队列 -- 成功 --&gt;等待执行
+  提交到等待队列 -- 失败 --&gt; 提交线程池 -- 已达到最大线程数 --&gt; 拒绝执行
+  提交线程池 -- 未达到最大线程数 --&gt; end2(分配线程执行)
+</code></pre>
+
+<h4 id="拒绝策略-RejectedExecutionHandler"><a href="#拒绝策略-RejectedExecutionHandler" class="headerlink" title="拒绝策略 - RejectedExecutionHandler"></a>拒绝策略 - RejectedExecutionHandler</h4><p>指定当任务数量超过系统实际承载能力时的策略，通常是线程池中的线程已经用完，达到了最大线程数，排队队列也已满的情况。ThreadPoolExecutor提供了以下策略：</p>
+<ul>
+<li><code>AbortPolicy</code>: 默认策略，丢弃并抛出RejectedExecutionException异常</li>
+<li><code>CallersRunsPolicy</code>: 绕过线程池，由主线程直接调用任务的run()方法执行</li>
+<li><code>DiscardOldestPolicy</code>: 抛弃队列中等待最久的任务，然后尝试再次提交当前任务</li>
+<li><code>DiscardPolicy</code>: 丢弃且不抛异常</li>
+</ul>
+<h4 id="线程工厂-ThreadFactory"><a href="#线程工厂-ThreadFactory" class="headerlink" title="线程工厂 - ThreadFactory"></a>线程工厂 - ThreadFactory</h4><p>ThreadFactory接口用来创建线程，其中仅有一个方法<code>Thread newThread(Runnable r);</code><br>通常使用<code>Executors.defaultThreadFactory()</code>即可</p>
+<h4 id="扩展线程池"><a href="#扩展线程池" class="headerlink" title="扩展线程池"></a>扩展线程池</h4><p>通过重写ThreadPoolExecutor中提供的接口对线程池进行控制</p>
+<ul>
+<li>ThreadPoolExecutor::beforeExecute(Thread t, Runnable r) 线程执行前</li>
+<li>ThreadPoolExecutor::afterExecute(Runnable r, Throwable t) 线程执行后</li>
+<li>ThreadPoolExecutor::terminated() 线程池销毁后</li>
+</ul>
+<h4 id="获取线程池的堆栈信息"><a href="#获取线程池的堆栈信息" class="headerlink" title="获取线程池的堆栈信息"></a>获取线程池的堆栈信息</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">ThreadPoolExecutor</span> <span class="hljs-variable">pools</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ThreadPoolExecutor</span>(...);<br><br><span class="hljs-comment">// 1. 用execute()替代submit()</span><br>pools.execute(task)<br><br><span class="hljs-comment">// 2. 使用Future (第五章)</span><br><span class="hljs-type">Future</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> pools.submit(task)<br>result.get();<br><br><span class="hljs-comment">// 3. 扩展ThreadPoolExecutor</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">TraceThreadPoolExecutor</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">ThreadPoolExecutor</span> &#123;&#125;<br></code></pre></td></tr></table></figure>
+
+
+<h3 id="线程数量"><a href="#线程数量" class="headerlink" title="线程数量"></a>线程数量</h3><blockquote>
+<p>Java Concurrency in Practice 一书给出了估算线程池大小的公式：<br>$$<br>N_{threads} &#x3D; N_{cpu} \times U_{cpu} \times (1 + \frac{W}{C}<br>$$<br>其中，<br>$ N_{cpu} &#x3D; CPU的数量 $<br>$ U_{cpu} &#x3D; 目标CPU的使用率0-1之间 $<br>$ \frac{W}{C} &#x3D; 等待时间与计算时间的比率 $</p>
+</blockquote>
+<h3 id="Fork-x2F-Join-框架"><a href="#Fork-x2F-Join-框架" class="headerlink" title="Fork&#x2F;Join 框架"></a>Fork&#x2F;Join 框架</h3><blockquote>
+<p>Fork: 创建子线程，使得系统进程可以多一个执行分支<br>Join: 等待分支执行结束，获得最终结果<br>ForkJoinPool 可以优化多分支任务的执行，提高效率。例如多线程的负载均衡。但如果任务的划分层次很多且一直得不到返回值，可能出现性能严重下降，或导致栈溢出，引发异常。</p>
+</blockquote>
+<ul>
+<li>ForkJoinPool::submit(ForkJoinTask&lt;T&gt;)  向ForkJoinPool线程池提交一个ForkJoinTask (支持 fork() &#x2F; join() 的任务)</li>
+<li>ForkJoinTask两个子类：RecursiveAction 和 RecursiveTask, 前者没有返回值，后者可以携带返回值</li>
+</ul>
+<h3 id="Guava-线程池"><a href="#Guava-线程池" class="headerlink" title="Guava 线程池"></a>Guava 线程池</h3><ul>
+<li>MoreExecutors::DirectExecutor 提供了一个简单的线程池实现。该线程池不创建额外线程，总是在当前线程中执行任务。便于使用统一的编码风格处理同步和异步调用，简化设计。</li>
+<li>MoreExecutors::getExitingExecutorService() 将普通线程转为Daemon线程池，从而可以在程序执行外后，即便有线程池存在，也能结束线程</li>
+<li>MoreExecutors还提供了对Future模式的扩展，见第5章</li>
+</ul>
+<h2 id="JDK-并发容器"><a href="#JDK-并发容器" class="headerlink" title="JDK 并发容器"></a>JDK 并发容器</h2><h2 id="JMH-性能测试"><a href="#JMH-性能测试" class="headerlink" title="JMH 性能测试"></a>JMH 性能测试</h2>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Java/">#Java</a>
+      
+        <a href="/tags/%E5%B9%B6%E5%8F%91/">#并发</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Java 并发</div>
+      <div>https://chanpero.github.io/2022/11/20/Java-并发/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>chanper</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年11月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-nc"></i>
+                  </span>
+                </a>
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/11/17/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF-Java/" title="算法模板-Java">
+                        <span class="hidden-mobile">算法模板-Java</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'chanpero/commit-utterances');
+      s.setAttribute('issue-term', 'title');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('mermaid' in window) {
+        mermaid.init();
+      }
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
