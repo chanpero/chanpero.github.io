@@ -16,15 +16,15 @@
   <meta name="author" content="chanper">
   <meta name="keywords" content="">
   
-    <meta name="description" content="第 1 章 - 走入并行世界基本知识点 同步：一旦开始，调用者必须等到方法调用返回后，才能继续后续的行为 异步：一旦开始，调用就会立即返回，调用者可以继续后续的操作   并发：多个任务交替执行 并行：多个任务同时执行   临界区：表示一种公共资源或共享数据，可以被多个线程使用，但同一时间只能有一个线程使用。一旦临界区资源被占用，其它线程想要使用就必须等待   阻塞：一个线程占用了临界区资源，其它线">
+    <meta name="description" content="《实战Java高并发程序设计》学习笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java 并发">
 <meta property="og:url" content="https://chanpero.github.io/2022/11/20/Java-%E5%B9%B6%E5%8F%91/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="第 1 章 - 走入并行世界基本知识点 同步：一旦开始，调用者必须等到方法调用返回后，才能继续后续的行为 异步：一旦开始，调用就会立即返回，调用者可以继续后续的操作   并发：多个任务交替执行 并行：多个任务同时执行   临界区：表示一种公共资源或共享数据，可以被多个线程使用，但同一时间只能有一个线程使用。一旦临界区资源被占用，其它线程想要使用就必须等待   阻塞：一个线程占用了临界区资源，其它线">
+<meta property="og:description" content="《实战Java高并发程序设计》学习笔记">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-20T11:42:37.000Z">
-<meta property="article:modified_time" content="2022-11-20T13:28:35.780Z">
+<meta property="article:modified_time" content="2022-11-22T12:55:44.307Z">
 <meta property="article:author" content="chanper">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="并发">
@@ -70,7 +70,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"chanpero.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"e6fbf52343bffac933f91eae00e480dc","google":"UA-245755945-1","gtag":"G-89BD3B3114","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1InH4XckKf2mHSUQuLHRajZH-gzGzoHsz","app_key":"jDwLBVwoqcNPXW57ymIDicVB","server_url":"https://1inh4xck.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"chanpero.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"e6fbf52343bffac933f91eae00e480dc","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1InH4XckKf2mHSUQuLHRajZH-gzGzoHsz","app_key":"jDwLBVwoqcNPXW57ymIDicVB","server_url":"https://1inh4xck.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -97,31 +97,7 @@
   
 
   
-    <!-- Google Analytics -->
-    <script async>
-      if (!Fluid.ctx.dnt) {
-        Fluid.utils.createScript('https://www.google-analytics.com/analytics.js', function() {
-          window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) };
-          ga.l = +new Date;
-          ga('create', 'UA-245755945-1', 'auto');
-          ga('send', 'pageview');
-        });
-      }
-    </script>
-  
 
-  
-    <!-- Google gtag.js -->
-    <script async>
-      if (!Fluid.ctx.dnt) {
-        Fluid.utils.createScript('https://www.googletagmanager.com/gtag/js?id=G-89BD3B3114', function() {
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-89BD3B3114');
-        });
-      }
-    </script>
   
 
   
@@ -274,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.8k 字
+          13k 字
         
       </span>
     
@@ -285,7 +261,7 @@
         
         
         
-          82 分钟
+          110 分钟
         
       </span>
     
@@ -370,7 +346,7 @@
 <li>Amdahl 定律<br>并行优化的效果取决于CPU数量，以及系统中的串行化代码的比例。CPU数量越多，串行化比例越低，优化效果越好。仅增加CPU数量而不降低串行化比例，无法提高系统性能。</li>
 <li>Gustafson 定律<br>只要增加处理器，就能获得更快的速度。如果可被并行化的代码所占比例足够大，那么加速比就能随着处理器数量线性增长。</li>
 </ol>
-<h2 id="回到Java：JMM"><a href="#回到Java：JMM" class="headerlink" title="回到Java：JMM"></a>回到Java：JMM</h2><ul>
+<h2 id="JMM-并发原则"><a href="#JMM-并发原则" class="headerlink" title="JMM 并发原则"></a>JMM 并发原则</h2><ul>
 <li>原子性：<ul>
 <li>一个操作不可中断</li>
 <li>对于32位JVM，long和double两个64位数据的读写是不保证原子性的</li>
@@ -400,7 +376,7 @@
 </li>
 </ul>
 <hr>
-<h1 id="第-2-章-Java并行程序基础"><a href="#第-2-章-Java并行程序基础" class="headerlink" title="第 2 章 - Java并行程序基础"></a>第 2 章 - Java并行程序基础</h1><h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><ul>
+<h1 id="第-2-章-并行程序基础"><a href="#第-2-章-并行程序基础" class="headerlink" title="第 2 章 - 并行程序基础"></a>第 2 章 - 并行程序基础</h1><h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><ul>
 <li>进程是程序的基本执行实体，是线程的容器</li>
 <li>线程是轻量级进程，是程序执行的最小单位</li>
 <li>线程的切换和调度的成本远远小于进程</li>
@@ -671,7 +647,172 @@
 <li>MoreExecutors::getExitingExecutorService() 将普通线程转为Daemon线程池，从而可以在程序执行外后，即便有线程池存在，也能结束线程</li>
 <li>MoreExecutors还提供了对Future模式的扩展，见第5章</li>
 </ul>
-<h2 id="JDK-并发容器"><a href="#JDK-并发容器" class="headerlink" title="JDK 并发容器"></a>JDK 并发容器</h2><h2 id="JMH-性能测试"><a href="#JMH-性能测试" class="headerlink" title="JMH 性能测试"></a>JMH 性能测试</h2>
+<h2 id="JDK-并发容器"><a href="#JDK-并发容器" class="headerlink" title="JDK 并发容器"></a>JDK 并发容器</h2><p>大部分容器都在java.util.concurrent包中，Collections工具类可以将任意集合包装成线程安全的集合。</p>
+<h3 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h3><p>Collections::synchronizedMap(map)方法可以将普通map包装成线程安全的map，但是内部频繁使用mutex互斥锁，性能较低。更好的选择是juc下的ConcurrentHashMap，专门为并发进行了性能优化，更适合多线程的场合。</p>
+<ul>
+<li>内部数据结构<ul>
+<li><code>int SizeCtl</code> 记录参与Map扩展的线程数量，或新table的扩容阈值</li>
+<li><code>CounterCell[]</code> 记录元素的个数</li>
+<li><code>Node&lt;K, V&gt;[] table</code> 实际存放Map内容的地方</li>
+<li><code>Node&lt;K, V&gt;[] nextTable</code> 当Table需要扩容时，会把新数据填充到nextTable中</li>
+</ul>
+</li>
+<li>节点类型<ul>
+<li><code>Node</code>: 若干链表构成的数组，每个元素是链表的表头</li>
+<li><code>TreeBin</code>: 当链表长度大于等于8时，会将链表树状化，变成一棵红黑树</li>
+<li><code>ForwardingNode</code>: 当数组容量达到75%时，数组将进行扩容。扩容过程中已经完成复制的老数组元素用ForwardingNode对象替代，表示当前槽位数据已经处理过了，避免竞争</li>
+</ul>
+</li>
+</ul>
+<pre><code class=" mermaid">classDiagram
+  Node &lt;|-- TreeNode
+  Node &lt;|-- ForwardingNode
+  Node &lt;|-- TreeBin
+  TreeNode *-- TreeBin
+
+  class Node &#123;
+    + hash: int
+    + key: K
+    + val: V
+    + next: Node
+  &#125; 
+
+  class TreeNode &#123;
+    + parent: TreeNode
+    + left: TreeNode
+    + right: TreeNode
+    + prev: TreeNode
+    +red: boolean
+  &#125;
+  
+  class ForwardingNode&#123;
+    + nextTable: Node&lt;K, V&gt;
+  &#125;
+
+  class TreeBin &#123;
+    + root: TreeNode
+    + first: TreeNode
+    + waiter: Thread
+    + prev: TreeNode
+    + red: boolean
+  &#125;
+</code></pre>
+
+<ul>
+<li>put()方法实现步骤<ul>
+<li>尝试初始化数组</li>
+<li>可能参与帮助扩容 - helpTransfer()</li>
+<li>根据对应槽位是链表还是红黑树，放入给定的key、value</li>
+<li>统计元素总数 - CounterCell()</li>
+<li>根据是否达到负载因子，默认0.75，触发扩容操作。扩容会将一半的元素移到新空间，且相对位置不变</li>
+</ul>
+</li>
+<li>get()方法实现步骤<ul>
+<li>根据hash值得到对应槽位</li>
+<li>若槽位第一个元素key和请求的一样，直接返回</li>
+<li>否则调用对应的find()进行查找<ul>
+<li>链表：顺序查找</li>
+<li>ForwardingNode::find()</li>
+<li>TreeBin::find()</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="ConcurrentLinkedQueue"><a href="#ConcurrentLinkedQueue" class="headerlink" title="ConcurrentLinkedQueue"></a>ConcurrentLinkedQueue</h3><p>可以通过Collections.synchronizedList(new LinkedList&lt;String&gt;())得到线程安全的LinkedList。对于队列，更推荐使用ConcurrentLinkedQueue。</p>
+<ul>
+<li>ConcurrentLinkedQueue 使用无锁CAS保证并发安全，需要处理可能存在的不一致问题，增加了设计和实现难度，但极大提升了性能</li>
+<li>head, tail分别表示链表的头、尾。但tail的更新并不是及时的，可能产生拖延，每次更新会跳跃两个元素</li>
+</ul>
+<blockquote>
+<p>TODO: 第4章 - 无锁并发</p>
+</blockquote>
+<h3 id="CopyOnWriteArrayList"><a href="#CopyOnWriteArrayList" class="headerlink" title="CopyOnWriteArrayList"></a>CopyOnWriteArrayList</h3><p>对于CopyOnWriteArrayList，不仅读完全不用加锁，写操作也不会阻塞读操作。只有写操作之间需要进行同步等待。</p>
+<ul>
+<li>所谓CopyOnWrite，就是在写入时，进行一次自我复制，修改时对副本进行操作，写完后再替换原本的数据，这样就保证写操作不影响读操作</li>
+</ul>
+<h3 id="BlockingQueue"><a href="#BlockingQueue" class="headerlink" title="BlockingQueue"></a>BlockingQueue</h3><p>一种实现数据共享通道的接口。主要实现有ArrayBlockingQueue(有界), LinkedBlockingQueue(无界), PriorityBlockingQueue(优先级)…<br>BlockingQueue让服务线程在队列为空时进行等待，有新消息进入队列后，自动将线程唤醒</p>
+<p>以ArrayBlokcingQueue为例：</p>
+<ul>
+<li>压入元素：offer()和put()，队满时offer()立即返回false，而put()会一直等待，直到有空闲位置</li>
+<li>弹出元素：poll()和take()，队空时poll()返回null，而take()会一直等待，直到有可用元素</li>
+<li>物理上是一个数组，逻辑上是一个环形结构，每次入队和出队都会调整队头和队尾两个索引的位置</li>
+</ul>
+<h3 id="ConcurrentSkipListMap"><a href="#ConcurrentSkipListMap" class="headerlink" title="ConcurrentSkipListMap"></a>ConcurrentSkipListMap</h3><ul>
+<li>跳表是一种快速查找数据的数据结构，类似平衡树。但在高并发下，平衡树调整平衡需要一个全局锁，而跳表只需要对局部加锁，因此性能更高。</li>
+<li>跳表分层维护多个链表，每个链表都是有序的，且上层链表都是下层链表元素的子集。不同于哈希map，跳表在插入时随机插入，但会维护有序性</li>
+<li>跳表是一种使用空间换时间的算法，查询的时间复杂度为$O(logn)$</li>
+<li>ConcurrentSkipListMap使用CAS对Node操作，保证并发安全</li>
+</ul>
+<h2 id="JMH-性能测试"><a href="#JMH-性能测试" class="headerlink" title="JMH 性能测试"></a>JMH 性能测试</h2><p>一个专门用于性能测试的框架，基本概念：</p>
+<ol>
+<li>模式 Mode<ul>
+<li>Throughput: 整体吞吐量，1s内可执行调用次数</li>
+<li>AverageTime: 调用的平均时间</li>
+<li>SampleTime: 随机取样，最后输出取样结果的分布</li>
+<li>SingleShotTime: 运行一次时间，通常测试冷启动时的性能</li>
+</ul>
+</li>
+<li>迭代 Iteration<ul>
+<li>JMH一次测量单位，通常为1s</li>
+</ul>
+</li>
+<li>预热 Warmup<ul>
+<li>由于JVM的JIT机制，编译前后的效率不同，通常只考虑JIT编译后的性能</li>
+</ul>
+</li>
+<li>状态 State<ul>
+<li>指定对象作用范围</li>
+<li>Scope.Thread 一个对象仅被一个线程访问</li>
+<li>Scope.Benchmark 多个线程共享一个实例</li>
+</ul>
+</li>
+<li>配置类 Options&#x2F;OptionsBuilder<ul>
+<li>对测试进行配置，指定一些参数，如测试类、进程个数、预热迭代次数</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h1 id="第4章-锁优化"><a href="#第4章-锁优化" class="headerlink" title="第4章 - 锁优化"></a>第4章 - 锁优化</h1><p>锁是最常用的同步方法之一，对于多核CPU实现多线程可以明显提高系统的性能，但也会增加额外的开销，高并发环境下，激烈的锁竞争会导致程序的性能下降。因此，必须合理设计并发。</p>
+<h2 id="提高锁性能"><a href="#提高锁性能" class="headerlink" title="提高锁性能"></a>提高锁性能</h2><ul>
+<li>减少锁持有时间：只在必要时进行同步，有助于降低锁冲突的可能性，进而提高系统吞吐量</li>
+<li>减小锁粒度：通过分割数据结构，缩小锁定对象的范围，降低锁冲突的可能性</li>
+<li>用读写分离锁替换独占锁：在读多写少的场合可以有效提升系统并发能力</li>
+<li>锁分离：读写锁的进一步延申，分割系统功能点，实现不同功能的可并发</li>
+<li>锁粗话：对于一连串的锁请求和锁释放，尽量整合成单次锁请求，尤其是循环内的锁请求</li>
+</ul>
+<h2 id="JVM-的锁优化"><a href="#JVM-的锁优化" class="headerlink" title="JVM 的锁优化"></a>JVM 的锁优化</h2><ul>
+<li>锁偏向：<ul>
+<li>如果一个线程获得了锁，锁就进入偏向模式，当这个线程再次请求锁时，无需再做任何同步操作</li>
+<li>适合几乎没有锁竞争的场合，节省了大量有关锁请求的操作，提高程序性能</li>
+<li>但如果锁竞争激烈，每次都是不同线程请求锁，偏向模式就会失效，性能反而会下降</li>
+</ul>
+</li>
+<li>轻量级锁：<ul>
+<li>如果锁偏向失效，JVM并不会立即挂起线程。，而是使用轻量级锁</li>
+<li>即简单地将对象头部作为指针指向持有锁的线程堆栈的内部，来判断一个线程是否持有对象锁</li>
+<li>线程若成功获得轻量级锁，则顺利进入临界区。反之，当前线程就会膨胀为重量级锁</li>
+</ul>
+</li>
+<li>自旋锁：<ul>
+<li>锁膨胀后，为了避免真的挂起线程，JVM尝试让当前线程做几个空循环</li>
+<li>若干循环后，如果可以得到锁，则进入临界区，节省了线程挂起的巨大开销</li>
+<li>如果还是不能获得锁，就真的将线程在OS层面挂起</li>
+</ul>
+</li>
+<li>锁消除：<ul>
+<li>JVM在JIT编译时，基于逃逸分析，通过对运行上下文的扫描，去除不可能存在共享资源竞争的锁</li>
+</ul>
+</li>
+</ul>
+<h2 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h2><ul>
+<li>为每一个线程分配一个独立的线程局部对象，只有当前线程可访问。因此自然是线程安全的</li>
+<li>ThreadLocal::set(), ThreadLocal::get()</li>
+<li>实现上，Thread::ThreadLocal::ThreadLocalMap使用弱引用保存各个线程的局部变量，key是ThreadLocal对象，value是局部变量</li>
+<li>如果共享对象对于竞争的处理容易引起性能损失，就应该考虑使用ThreadLocal为每个线程分配单独的对象</li>
+<li>ThreadLocalRandom继承自Random，使用Unsafe，让每个线程维护自己的种子变量，不存在竞争，优化了高并发环境中随机数的产生效率</li>
+</ul>
+<h2 id="无锁"><a href="#无锁" class="headerlink" title="无锁"></a>无锁</h2>
                 
               </div>
             
@@ -779,8 +920,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/11/17/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF-Java/" title="算法模板-Java">
-                        <span class="hidden-mobile">算法模板-Java</span>
+                      <a href="/2022/11/17/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/" title="算法模板">
+                        <span class="hidden-mobile">算法模板</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

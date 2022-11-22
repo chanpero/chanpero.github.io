@@ -58,7 +58,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"chanpero.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"e6fbf52343bffac933f91eae00e480dc","google":"UA-245755945-1","gtag":"G-89BD3B3114","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1InH4XckKf2mHSUQuLHRajZH-gzGzoHsz","app_key":"jDwLBVwoqcNPXW57ymIDicVB","server_url":"https://1inh4xck.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"chanpero.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"e6fbf52343bffac933f91eae00e480dc","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"1InH4XckKf2mHSUQuLHRajZH-gzGzoHsz","app_key":"jDwLBVwoqcNPXW57ymIDicVB","server_url":"https://1inh4xck.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -85,31 +85,7 @@
   
 
   
-    <!-- Google Analytics -->
-    <script async>
-      if (!Fluid.ctx.dnt) {
-        Fluid.utils.createScript('https://www.google-analytics.com/analytics.js', function() {
-          window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) };
-          ga.l = +new Date;
-          ga('create', 'UA-245755945-1', 'auto');
-          ga('send', 'pageview');
-        });
-      }
-    </script>
-  
 
-  
-    <!-- Google gtag.js -->
-    <script async>
-      if (!Fluid.ctx.dnt) {
-        Fluid.utils.createScript('https://www.googletagmanager.com/gtag/js?id=G-89BD3B3114', function() {
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-89BD3B3114');
-        });
-      }
-    </script>
   
 
   
@@ -125,7 +101,7 @@
 
 
   
-<!-- hexo injector head_end start --><meta name="google-site-verification" content="Rjx47YfNszBdIGeZLWuRztMPei-gooZTzr3WqT2NEDs" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 6.3.0"></head>
 
 
 <body>
@@ -287,7 +263,7 @@
       
       <a class="index-excerpt " href="/2022/11/20/Java-%E5%B9%B6%E5%8F%91/" target="_self">
         <div>
-          第 1 章 - 走入并行世界基本知识点 同步：一旦开始，调用者必须等到方法调用返回后，才能继续后续的行为 异步：一旦开始，调用就会立即返回，调用者可以继续后续的操作   并发：多个任务交替执行 并行：多个任务同时执行   临界区：表示一种公共资源或共享数据，可以被多个线程使用，但同一时间只能有一个线程使用。一旦临界区资源被占用，其它线程想要使用就必须等待   阻塞：一个线程占用了临界区资源，其它线
+          《实战Java高并发程序设计》学习笔记
         </div>
       </a>
 
@@ -340,23 +316,23 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/11/17/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF-Java/" target="_self">
-          <img src="/img/avatar.png" srcset="/img/loading.gif" lazyload alt="算法模板-Java">
+        <a href="/2022/11/17/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/" target="_self">
+          <img src="/img/avatar.png" srcset="/img/loading.gif" lazyload alt="算法模板">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/11/17/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF-Java/" target="_self">
-          算法模板-Java
+        <a href="/2022/11/17/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/" target="_self">
+          算法模板
         </a>
       </h1>
 
       
-      <a class="index-excerpt " href="/2022/11/17/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF-Java/" target="_self">
+      <a class="index-excerpt " href="/2022/11/17/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/" target="_self">
         <div>
-          算法题模板 - Java
+          算法题模板 参考：https://lghost1999.github.io/algorithm_template/
         </div>
       </a>
 
@@ -508,9 +484,9 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/LeetCode/">#LeetCode</a>
-            
               <a href="/tags/%E7%AE%97%E6%B3%95/">#算法</a>
+            
+              <a href="/tags/LeetCode/">#LeetCode</a>
             
           </div>
         
