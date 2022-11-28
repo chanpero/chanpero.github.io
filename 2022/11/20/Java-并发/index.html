@@ -24,7 +24,7 @@
 <meta property="og:description" content="《实战Java高并发程序设计》学习笔记">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-20T11:42:37.000Z">
-<meta property="article:modified_time" content="2022-11-24T11:38:53.473Z">
+<meta property="article:modified_time" content="2022-11-28T13:12:01.530Z">
 <meta property="article:author" content="chanper">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="并发">
@@ -250,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          13k 字
+          20k 字
         
       </span>
     
@@ -261,7 +261,7 @@
         
         
         
-          110 分钟
+          170 分钟
         
       </span>
     
@@ -402,7 +402,7 @@
 </code></pre>
 
 
-<h2 id="线程的基本操作"><a href="#线程的基本操作" class="headerlink" title="线程的基本操作"></a>线程的基本操作</h2><ul>
+<h2 id="线程基本操作"><a href="#线程基本操作" class="headerlink" title="线程基本操作"></a>线程基本操作</h2><ul>
 <li><p>新建线程：</p>
 <ul>
 <li>extends Thread()::run()</li>
@@ -456,9 +456,9 @@
 <li>volatile有助于操作的原子性,可见性,有序性</li>
 <li>但volatile不能代替锁，不保证一些复合操作的原子性</li>
 </ul>
-<h2 id="线程组-ThreadGroup"><a href="#线程组-ThreadGroup" class="headerlink" title="线程组 - ThreadGroup"></a>线程组 - ThreadGroup</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">ThreadGroup</span> <span class="hljs-variable">tg</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ThreadGroup</span>( <span class="hljs-string">&quot;PrintGroup&quot;</span>);<br><span class="hljs-type">Thread</span> <span class="hljs-variable">t1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(tg, <span class="hljs-keyword">new</span> <span class="hljs-title class_">ThreadGroupName</span>(), <span class="hljs-string">&quot;T1&quot;</span>);<br><span class="hljs-type">Thread</span> <span class="hljs-variable">t2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(tg, <span class="hljs-keyword">new</span> <span class="hljs-title class_">ThreadGroupName</span>(), <span class="hljs-string">&quot;T2&quot;</span>);<br>t1.start();<br>t2.start();<br>System.out.println(tg.activeCount()); <span class="hljs-comment">// 获得活动线程总数</span><br>tg.list();  <span class="hljs-comment">//打印线程组中所有线程</span><br></code></pre></td></tr></table></figure>
+<h2 id="ThreadGroup"><a href="#ThreadGroup" class="headerlink" title="ThreadGroup"></a>ThreadGroup</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">ThreadGroup</span> <span class="hljs-variable">tg</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ThreadGroup</span>( <span class="hljs-string">&quot;PrintGroup&quot;</span>);<br><span class="hljs-type">Thread</span> <span class="hljs-variable">t1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(tg, <span class="hljs-keyword">new</span> <span class="hljs-title class_">ThreadGroupName</span>(), <span class="hljs-string">&quot;T1&quot;</span>);<br><span class="hljs-type">Thread</span> <span class="hljs-variable">t2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(tg, <span class="hljs-keyword">new</span> <span class="hljs-title class_">ThreadGroupName</span>(), <span class="hljs-string">&quot;T2&quot;</span>);<br>t1.start();<br>t2.start();<br>System.out.println(tg.activeCount()); <span class="hljs-comment">// 获得活动线程总数</span><br>tg.list();  <span class="hljs-comment">//打印线程组中所有线程</span><br></code></pre></td></tr></table></figure>
 
-<h2 id="守护线程-Daemon"><a href="#守护线程-Daemon" class="headerlink" title="守护线程 - Daemon"></a>守护线程 - Daemon</h2><ul>
+<h2 id="Daemon"><a href="#Daemon" class="headerlink" title="Daemon"></a>Daemon</h2><ul>
 <li>完成一些系统性服务，例如GC线程、JIT线程<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Thread</span> <span class="hljs-variable">t</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DaemonT</span>();<br>t.setDaemon(<span class="hljs-literal">true</span>);  <span class="hljs-comment">// 必须在守护线程开始之前设置，否则当作普通的用户线程执行</span><br>t.start();  <span class="hljs-comment">// 只要主线程结束，整个程序就会结束，不管守护线程是否结束</span><br></code></pre></td></tr></table></figure></li>
 </ul>
 <h2 id="线程优先级"><a href="#线程优先级" class="headerlink" title="线程优先级"></a>线程优先级</h2><ul>
@@ -466,7 +466,7 @@
 <li>Thread::setPriority(int)</li>
 <li>优先级的后果不可预测，无法精确控制。因此如果要求严格，仍需要自己在应用层解决线程调度问题</li>
 </ul>
-<h2 id="线程安全-Synchronized"><a href="#线程安全-Synchronized" class="headerlink" title="线程安全 - Synchronized"></a>线程安全 - Synchronized</h2><ul>
+<h2 id="Synchronized"><a href="#Synchronized" class="headerlink" title="Synchronized"></a>Synchronized</h2><ul>
 <li>对同步的代码加锁，使得每次只有一个线程进入同步块，从而保证现成的安全性</li>
 <li>如果指定加锁对象，则进入同步代码前要先获得指定对象的锁</li>
 <li>如果作用于实例方法，相当于对当前实例加锁，进入同步代码前要获得当前实例的锁</li>
@@ -478,7 +478,7 @@
 <li>jps查看系统运行的Java程序，jstack pid 打印指定java进程的内部线程及其堆栈</li>
 </ul>
 <hr>
-<h1 id="第3章-JDK并发包"><a href="#第3章-JDK并发包" class="headerlink" title="第3章 - JDK并发包"></a>第3章 - JDK并发包</h1><h2 id="同步控制工具"><a href="#同步控制工具" class="headerlink" title="同步控制工具"></a>同步控制工具</h2><h3 id="ReentrantLock"><a href="#ReentrantLock" class="headerlink" title="ReentrantLock"></a>ReentrantLock</h3><blockquote>
+<h1 id="第-3-章-JDK并发包"><a href="#第-3-章-JDK并发包" class="headerlink" title="第 3 章 - JDK并发包"></a>第 3 章 - JDK并发包</h1><h2 id="同步控制工具"><a href="#同步控制工具" class="headerlink" title="同步控制工具"></a>同步控制工具</h2><h3 id="ReentrantLock"><a href="#ReentrantLock" class="headerlink" title="ReentrantLock"></a>ReentrantLock</h3><blockquote>
 <p>可重入锁，性能和synchronized相当，但使用更灵活，提供额外的高级功能</p>
 </blockquote>
 <ul>
@@ -773,7 +773,7 @@
 </li>
 </ol>
 <hr>
-<h1 id="第4章-锁优化"><a href="#第4章-锁优化" class="headerlink" title="第4章 - 锁优化"></a>第4章 - 锁优化</h1><p>锁是最常用的同步方法之一，对于多核CPU实现多线程可以明显提高系统的性能，但也会增加额外的开销，高并发环境下，激烈的锁竞争会导致程序的性能下降。因此，必须合理设计并发。</p>
+<h1 id="第-4-章-锁优化"><a href="#第-4-章-锁优化" class="headerlink" title="第 4 章 - 锁优化"></a>第 4 章 - 锁优化</h1><p>锁是最常用的同步方法之一，对于多核CPU实现多线程可以明显提高系统的性能，但也会增加额外的开销，高并发环境下，激烈的锁竞争会导致程序的性能下降。因此，必须合理设计并发。</p>
 <h2 id="提高锁性能"><a href="#提高锁性能" class="headerlink" title="提高锁性能"></a>提高锁性能</h2><ul>
 <li>减少锁持有时间：只在必要时进行同步，有助于降低锁冲突的可能性，进而提高系统吞吐量</li>
 <li>减小锁粒度：通过分割数据结构，缩小锁定对象的范围，降低锁冲突的可能性</li>
@@ -812,7 +812,240 @@
 <li>如果共享对象对于竞争的处理容易引起性能损失，就应该考虑使用ThreadLocal为每个线程分配单独的对象</li>
 <li>ThreadLocalRandom继承自Random，使用Unsafe，让每个线程维护自己的种子变量，不存在竞争，优化了高并发环境中随机数的产生效率</li>
 </ul>
-<h2 id="无锁"><a href="#无锁" class="headerlink" title="无锁"></a>无锁</h2>
+<h2 id="无锁"><a href="#无锁" class="headerlink" title="无锁"></a>无锁</h2><blockquote>
+<p>锁是一种悲观的策略，它总是假设每一次的临界区操作都会产生冲突，因此会阻塞线程，牺牲性能。<br>而无锁是一种乐观的策略，它假设对资源的访问是没有冲突的，所有线程都可以在不停顿的状态下持续执行。</p>
+</blockquote>
+<h3 id="Compare-And-Swap"><a href="#Compare-And-Swap" class="headerlink" title="Compare And Swap"></a>Compare And Swap</h3><p>CAS比较交换是无锁策略的一种典型实现方式，更新规则如下：<br>$$ CAS(V, E, N)，其中V：要更新的变量， E：预期值， N：新值$$</p>
+<ul>
+<li>仅当V值等于E值时，才会更新V为N，否则说明已经有其它线程更新了V</li>
+<li>CAS返回当前V的真实值</li>
+<li>CAS无锁方式，对死锁天然免疫，没有锁竞争带来的开销，也没有线程间频繁调度的开销，因此比基于锁的方式拥有更优越的性能</li>
+</ul>
+<h3 id="AtomicInteger"><a href="#AtomicInteger" class="headerlink" title="AtomicInteger"></a>AtomicInteger</h3><ul>
+<li>JUC下的atomic包中，实现了一些直接使用CAS的线程安全的类型，如AtomicInteger, AtomicLong, AtomicBoolean, AtomicReference…</li>
+<li><code>AtomicInteger::getAndSet(newVal), AtomicInteger::getAndIncrement(), AtomicInteger::addAndGet(delta)...</code></li>
+<li>内部使用UnSafe类实现更新</li>
+</ul>
+<h3 id="Unsafe"><a href="#Unsafe" class="headerlink" title="Unsafe"></a>Unsafe</h3><ul>
+<li><p>封装了一些类似指针的操作，例如根据偏移量获得&#x2F;设置对应位置上的数据</p>
+<pre><code class="hljs">public final native boolean compareAndSetInt(Object o, long offset, int expected, int x)
+- offset是对象内的偏移量，即一个字段到对象头部的偏移
+</code></pre>
+</li>
+<li><p><code>UnSafe::objectFieldOffset(Field f)</code> 获取指定字段相对于对象内存地址的偏移量valueOffset</p>
+</li>
+<li><p><code>Unsafe::putIntVolatile(object, offset, x)...</code></p>
+</li>
+<li><p>UnSafe仅可由JDK内部 (Bootstrap Class Loader) 使用，App Loader无法加载</p>
+</li>
+</ul>
+<h3 id="AtomicStampedReference"><a href="#AtomicStampedReference" class="headerlink" title="AtomicStampedReference"></a>AtomicStampedReference</h3><blockquote>
+<p>ABA问题：CAS操作存在的一个问题，如果在A线程修改对象之前，B线程连续修改了两次对象，且修改后仍是原值，那么A线程就无法知道这是已经被修改过的对象。对于一些需要过程状态信息的对象，就可能产生异常。</p>
+</blockquote>
+<ul>
+<li>AtomicReference无法解决ABA问题，根本原因在于对象值本身与状态画上了等号，对象在修改过程中丢失了状态信息</li>
+<li>AtomicStampedReference通过在内部额外维护一个时间戳来表示状态值，解决ABA问题。当设置对象值时，仅当对象值和时间戳都满足期望值才会写入</li>
+<li><code>AtomicStampedReference::compareAndSet(expectedReference, newReference, exptectedStamp, newStamp)</code></li>
+<li><code>AtomicStampedReference::getReference(), AtomicStampedReference::getStamp()</code></li>
+</ul>
+<h3 id="AtomicIntegerArray"><a href="#AtomicIntegerArray" class="headerlink" title="AtomicIntegerArray"></a>AtomicIntegerArray</h3><ul>
+<li>对数组的原子性操作封装，使用Unsafe类通过CAS方式保障int[]在多线程下的安全性</li>
+<li>除AtomicIntegerArray外，还有AtomicLongArray, AtomicReferenceArray, 共三个</li>
+<li><code>AtomicIntegerArray::compareAndSet(int i, int expect, int update)</code> 其中i是数组下标</li>
+</ul>
+<h3 id="AtomicIntegerFieldUpdater"><a href="#AtomicIntegerFieldUpdater" class="headerlink" title="AtomicIntegerFieldUpdater"></a>AtomicIntegerFieldUpdater</h3><ul>
+<li>可以在几乎不改动原有代码的基础上，让普通的变量具有线程安全性</li>
+<li>除AtomicIntegerFieldUpdater外，还有AtomicLongFieldUpdater, AtomicReferenceFieldUpdater, 共三个</li>
+<li><code>AtomicIntegerFieldUpdater::newUpdater(Class, fieldName)</code></li>
+<li>注意事项：<ul>
+<li>Updater使用反射，只能修改它可见范围内的变量</li>
+<li>变量必须用volatile修饰</li>
+<li>由于CAS通过Unsafe::objectFieldOffset()得到对象中的偏向量直接赋值，因此不支持static字段</li>
+</ul>
+</li>
+</ul>
+<h3 id="SychronousQueue的实现"><a href="#SychronousQueue的实现" class="headerlink" title="SychronousQueue的实现"></a>SychronousQueue的实现</h3><ul>
+<li>内部维护一个线程等待队列，对SychronousQueue的任何一次读操作都需要等待一个写操作，反之亦然。因此更像是一个数据交换通道</li>
+<li>内部将put(), take()两种功能抽象为一个共同的方法Transfer::transfer(Object e, timed, nanos)<ul>
+<li>对象e非空时，表示当前操作传递给一个消费者，为空则表示当前操作需要请求一个数据。</li>
+<li>返回值非空表示数据已经被接收或正常提供，否则表示失败，出现超时或中断</li>
+</ul>
+</li>
+</ul>
+<h2 id="关于死锁"><a href="#关于死锁" class="headerlink" title="关于死锁"></a>关于死锁</h2><blockquote>
+<p>死锁就是两个或者多个线程互相占用对方需要的资源，导致彼此之间互相等待对方释放资源，产生了无限制等待的现象。死锁一旦发生，如果没有外力介入，这种等待将永远存在。</p>
+</blockquote>
+<ul>
+<li>经典问题 – 哲学家就餐问题</li>
+<li>要避免死锁，除了使用无锁函数外，可以利用重入锁的中断或限时等待</li>
+</ul>
+<hr>
+<h1 id="第-5-章-并行模式与算法"><a href="#第-5-章-并行模式与算法" class="headerlink" title="第 5 章 - 并行模式与算法"></a>第 5 章 - 并行模式与算法</h1><h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><ul>
+<li>一种对象创建模式，用于产生一个对象的具体实例，可以确保系统中一个类只产生一个实例</li>
+<li>好处：<ul>
+<li>省略new操作花费的时间</li>
+<li>减轻GC压力，缩短GC停顿时间</li>
+</ul>
+</li>
+<li>实现：<ol>
+<li><p>饿汉方式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Singleton</span> &#123;<br>  <span class="hljs-keyword">private</span> <span class="hljs-title function_">Singleton</span><span class="hljs-params">()</span> &#123;<br>    System.out.println(<span class="hljs-string">&quot;Singleton is create&quot;</span>);<br>  &#125;<br><br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">Singleton</span> <span class="hljs-variable">instance</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Singleton</span>();  <span class="hljs-comment">// 私有且静态。类初始化时即创建</span><br><br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Singleton <span class="hljs-title function_">getInstance</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-keyword">return</span> instance;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>懒汉方式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LazySingleton</span>&#123;<br>  <span class="hljs-keyword">private</span> <span class="hljs-title function_">LazySingleton</span><span class="hljs-params">()</span>&#123;<br>    System.out.println(<span class="hljs-string">&quot;LazySingleton is create&quot;</span>);<br>  &#125;<br><br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">lazySingleton</span> <span class="hljs-variable">instance</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br><br>  <span class="hljs-comment">// 第一次调用时才初始化instance</span><br>  <span class="hljs-comment">// 为了防止对象被多次创建，必须用synchronized进行同步</span><br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> sychronized LazySingleton <span class="hljs-title function_">getInstance</span><span class="hljs-params">()</span>&#123;  <br>    <span class="hljs-keyword">if</span>(instance == <span class="hljs-literal">null</span>)<br>      instance = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LazySingleton</span>();<br>    <span class="hljs-keyword">return</span> instance;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>结合方式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">StaticSingleton</span>&#123;<br>  <span class="hljs-keyword">private</span> <span class="hljs-title function_">StaticSingleton</span><span class="hljs-params">()</span> &#123;<br>    System.out.println(<span class="hljs-string">&quot;StaticSingleton is create&quot;</span>);<br><br>    <span class="hljs-comment">// 巧妙使用内部类和类的初始化机制</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SingletonHolder</span> &#123;<br>      <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">StaticSingleton</span> <span class="hljs-variable">instance</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StaticSingleton</span>();<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> StaticSingleton <span class="hljs-title function_">getInstance</span><span class="hljs-params">()</span> &#123;<br>      <span class="hljs-keyword">return</span> SingletonHolder.instance;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ul>
+<h2 id="不变模式"><a href="#不变模式" class="headerlink" title="不变模式"></a>不变模式</h2><ul>
+<li>使用不可改变的对象，可以确保其在没有同步操作的多线程环境中依然保持内部状态的一致性和正确性。因此可以去除同步操作，提高并行性能</li>
+<li>主要使用场景：<ul>
+<li>对象创建后，其内部状态和数据不再发生任何变化</li>
+<li>对象需要被共享，被多线程频繁访问</li>
+</ul>
+</li>
+<li>Java实现不变模式：<ul>
+<li>去除setter()方法及修改自身属性的方法</li>
+<li>所有属性设为私有，并用final标记，确保其不可修改</li>
+<li>确保没有子类可以重载修改它的行为</li>
+<li>有一个可以创建完整对象的构造函数</li>
+</ul>
+</li>
+<li>JDK 中不变模式应用非常广泛，例如String, Boolean, Byte, Long…等等元数据类、包装类<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 不变模式实例</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Product</span> &#123;  <span class="hljs-comment">// 确保无子类</span><br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> String no;    <span class="hljs-comment">// 私有，final</span><br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> String name;<br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-type">double</span> price;<br><br>  <span class="hljs-keyword">public</span> <span class="hljs-title function_">Product</span><span class="hljs-params">(String no, String name, <span class="hljs-type">double</span> price)</span>&#123; <span class="hljs-comment">// 创建对象时必须指定数据</span><br>    <span class="hljs-built_in">super</span>();<br>    <span class="hljs-built_in">this</span>.no = no;<br>    <span class="hljs-built_in">this</span>.name = name;<br>    <span class="hljs-built_in">this</span>.price = price;<br>  &#125;<br><br>  <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getNo</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-keyword">return</span> no;<br>  &#125;<br><br>  <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getName</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-keyword">return</span> name;<br>  &#125;<br><br>  <span class="hljs-keyword">public</span> <span class="hljs-type">double</span> <span class="hljs-title function_">getPrice</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-keyword">return</span> price;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="生产者-消费者模式"><a href="#生产者-消费者模式" class="headerlink" title="生产者 - 消费者模式"></a>生产者 - 消费者模式</h2><ul>
+<li>经典的多线程设计模式，为多线程间的协作提供了良好的解决方案</li>
+<li>两类线程，若干生产者线程负责提交用户请求，若干消费者线程负责具体处理生产者提交的任务。</li>
+<li>生产者和消费者之间通过内存缓冲区进行通信，缓解性能差</li>
+<li>无锁CAS的实现框架 - Disruptor<ul>
+<li>使用环形队列，快速定位元素位置，充分复用内存</li>
+<li>监控策略：Blocking, Sleeping, Yielding, BusySpin</li>
+<li>CPU Cache 优化，解决缓存行伪共享</li>
+</ul>
+</li>
+</ul>
+<h2 id="Future-模式"><a href="#Future-模式" class="headerlink" title="Future 模式"></a>Future 模式</h2><p>Future模式是多线程开发中非常常见的一种设计模式，核心思想是异步调用。Future模式让被调用者立即返回，并在后台处理请求，对于调用者可以先处理其它任务，在真正需要数据的场合再尝试获得需要的数据。</p>
+<ul>
+<li>JUC 提供了Future模式的封装。<ul>
+<li>FutureTask(Callable) 用Callable接口的对象构造FutureTask</li>
+<li>FutureTask::get() 获取call()方法的结果，如果call()尚未完成则等待</li>
+<li>FutureTask::cancel(), FutureTask::isDone(), FutureTask::get(timeout, timeunit)…</li>
+</ul>
+</li>
+<li>Guava库对Future增加了通知功能以及异常处理，能够在任务完成&#x2F;失败时自动回调，从而不阻塞主线程</li>
+</ul>
+<h2 id="并行流水线"><a href="#并行流水线" class="headerlink" title="并行流水线"></a>并行流水线</h2><blockquote>
+<p>执行过程中有数据相关性的运算都是无法完美并行的，但是可以借用流水线的思想，拆分步骤，将有依赖关系的操作分配在不同的线程中进行计算，尽可能利用多核的优势。通常需要一个中间消息传递队列，例如BlockingQueue</p>
+</blockquote>
+<h2 id="并行搜索"><a href="#并行搜索" class="headerlink" title="并行搜索"></a>并行搜索</h2><blockquote>
+<p>将原始数据集合按照期望的线程数进行分割，每个线程各自独立搜索，当其中一个线程找到数据后，立即返回结果即可</p>
+</blockquote>
+<h2 id="并行排序"><a href="#并行排序" class="headerlink" title="并行排序"></a>并行排序</h2><blockquote>
+<p>奇偶交换排序：分两阶段，奇交换总是比较奇数索引及其相邻的后续元素，偶交换总是比较偶数索引及其相邻的后续元素。且奇交换和偶交换成对出现，保证比较涉及每一个元素。可以利用多线程对每一次元素比较和交换进行操作。</p>
+<p>希尔排序：将整个数组根据间隔h分割为若干个子数组，利用多线程分别对每一个子数组进行排序，每一组排序完成后递减h的值，进行下一轮更加精细的排序，直到h为1。</p>
+</blockquote>
+<h2 id="矩阵乘法"><a href="#矩阵乘法" class="headerlink" title="矩阵乘法"></a>矩阵乘法</h2><blockquote>
+<p>利用矩阵分割+多线程实现矩阵乘法的并行化</p>
+</blockquote>
+<h2 id="网络-NIO"><a href="#网络-NIO" class="headerlink" title="网络 NIO"></a>网络 NIO</h2><blockquote>
+<p>Java NIO 涉及通道Channel、缓冲区Buffer、文件IO、网络IO等。NIO可以将网络IO等待时间从线程中抽离，主要涉及Selector, SocketChannel等API。</p>
+</blockquote>
+<h2 id="异步-AIO"><a href="#异步-AIO" class="headerlink" title="异步 AIO"></a>异步 AIO</h2><blockquote>
+<p>NIO在网络操作中提供了非阻塞的方法，但IO行为还是同步的。而AIO不是在IO准备好时再通知线程，而是在IO操作完成后，再给线程发出通知，因此AIO完全不会阻塞。主要涉及AsynchronousServerSocketChannel, CompletionHandler等API。</p>
+</blockquote>
+<hr>
+<h1 id="第-6-章-Java-8-x2F-9-x2F-10-与并发"><a href="#第-6-章-Java-8-x2F-9-x2F-10-与并发" class="headerlink" title="第 6 章 - Java 8&#x2F;9&#x2F;10 与并发"></a>第 6 章 - Java 8&#x2F;9&#x2F;10 与并发</h1><h2 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h2><ul>
+<li>特征：<ul>
+<li>可以将函数作为参数传递给另一个函数</li>
+<li>一个函数可以作为另一个函数的返回值</li>
+<li>限制函数副作用 (不修改全局变量&#x2F;外部状态)<ul>
+<li>显式函数：函数与外界交换数据的唯一渠道就是参数和返回值，不会读取或修改外部状态。利于调试和排错</li>
+<li>隐式函数：与之相反。不利于调试和跟踪</li>
+</ul>
+</li>
+<li>声明式，不需要再提供明确的指令操作</li>
+<li>几乎所有对象都是不变的</li>
+<li>易于并行，提高性能</li>
+<li>代码量精简</li>
+</ul>
+</li>
+<li>FunctionalInterface 注释<ul>
+<li>只定义了单一抽象方法的接口 (Object实现的方法除外)</li>
+<li>可以存在实例方法&#x2F;默认方法</li>
+</ul>
+</li>
+<li>Lambda 表达式<ul>
+<li>匿名函数，没有函数名的函数体</li>
+<li>可以直接作为参数传递给相关的调用者</li>
+</ul>
+</li>
+<li>方法引用<ul>
+<li>精简Lambda表达式的手段，通过类名&#x2F;实例名，以及方法名定位一个静态&#x2F;实例方法</li>
+<li><code>ClassName::method, instance::method, Class::new, TypeName[]::new</code>等等</li>
+<li>Java会自动识别流中元素是作为调用目标还是调用方法的参数</li>
+</ul>
+</li>
+</ul>
+<h2 id="并行流与并行排序"><a href="#并行流与并行排序" class="headerlink" title="并行流与并行排序"></a>并行流与并行排序</h2><ul>
+<li>stream.parallel()</li>
+<li>list.parallelStream()</li>
+<li>Arrays.parallelSort(arr)</li>
+<li>Arrays.parallelSetAll(arr, generator)</li>
+<li>……</li>
+</ul>
+<h2 id="CompletableFuture"><a href="#CompletableFuture" class="headerlink" title="CompletableFuture"></a>CompletableFuture</h2><ul>
+<li>继承自CompletionStage接口，实现了40多种方法，用于函数式编程的流式调用</li>
+<li><code>CompletableFuture::complete()</code> 告知完成状态</li>
+<li><code>CompletableFuture::get()</code> 获取执行结果，未完成则阻塞。可用于阻止主线程直接退出</li>
+<li><code>CompletableFuture::supplyAync(supplier, [executor])</code> 异步调用，可指定线程池，默认在ForkJoinPool.common线程池中作为Daemon线程执行</li>
+<li><code>CompletableFuture::runAync(runnable, [executor])</code> 同上，但不需要返回值</li>
+<li><code>CompletableFuture::thenApply(function)</code> 转换结果</li>
+<li><code>CompletableFuture::thenAccept(consumer)</code> 消费结果</li>
+<li><code>CompletableFuture::thenRun(Runnable)</code> 任务完成后的回调</li>
+<li><code>CompletableFuture::thenCompose(function)</code> 组合多个CompletableFuture</li>
+<li><code>CompletableFuture::thenCombine(completionStage)</code> 组合多个CompletableFuture，并将执行结果传递给一个BiFunction</li>
+<li><code>CompletableFuture::orTimeout(time, TimeUnit)</code> </li>
+<li><code>CompletableFuture::exceptionally(function)</code> 异常处理</li>
+</ul>
+<h2 id="StampedLock"><a href="#StampedLock" class="headerlink" title="StampedLock"></a>StampedLock</h2><ul>
+<li>读写锁的改进版本，提供了一种乐观的读策略，增加了系统的并行度</li>
+<li>内部实现基于CLH，一种自旋锁，维护一个等待线程队列，每个节点保存一个标记位用于判断当前线程是否已经释放锁。保证没有饥饿，以及FIFO的服务顺序。</li>
+<li>小陷阱：实现上使用Unsafe.park()挂起线程，因此在遇到线程中断时会重新进入循环，导致疯狂CPU占用</li>
+</ul>
+<h2 id="原子类增强"><a href="#原子类增强" class="headerlink" title="原子类增强"></a>原子类增强</h2><ul>
+<li>LongAdder<ul>
+<li>将核心value数据分离成一个数组cells，减小锁粒度，降低多线程竞争。最终的计数结果为这个数组的求和累加</li>
+</ul>
+</li>
+<li>LongAccumulator<ul>
+<li>在LongAdder基础上，可以实现任意函数操作</li>
+</ul>
+</li>
+</ul>
+<h2 id="ConcurrentHashMap-增强"><a href="#ConcurrentHashMap-增强" class="headerlink" title="ConcurrentHashMap 增强"></a>ConcurrentHashMap 增强</h2><ul>
+<li>foreach</li>
+<li>reduce</li>
+<li>computeIfAbsent 条件插入</li>
+<li>search</li>
+<li>mappingCount 以long型返回map条目数，并发情况下不准确</li>
+<li>newKeySet 返回一个线程安全的Set (JDK中Set的实现依赖于Map)</li>
+</ul>
+<h2 id="反应式编程"><a href="#反应式编程" class="headerlink" title="反应式编程"></a>反应式编程</h2><blockquote>
+<p>反应式编程用于处理异步流中的数据。核心组件包括发布者、订阅者。<br>发布者将数据发布到流中，订阅者则负责处理这些数据。<br>涉及API：JUC.Flow.Subscriber, JUC.Flow.Subscription, JUC.SubmissionPublisher;</p>
+</blockquote>
+<h1 id="第-7-章-Akka构建高并发程序"><a href="#第-7-章-Akka构建高并发程序" class="headerlink" title="第 7 章 - Akka构建高并发程序"></a>第 7 章 - Akka构建高并发程序</h1><blockquote>
+<p>Akka提供了一种名为Actor的并发模型，其粒度比线程小，因此可以在系统中启用大量的Actor<br>Akka提供了一套容错机制，允许在Actor出现异常时进行一些恢复或者重复操作<br>Akka不仅可以在单机上构架高并发程序，也可以在网络中构建分布式程序，并提供位置透明的Actor定位服务</p>
+<p>粒子群算法：一种进化算法，用于求解优化问题，通常可以得到一个局部最优解。<br>背景：鸟类觅食表现出群体特性，鸟群往往会聚集在一堆食物旁觅食。如果其中一只鸟发现另外一堆更丰盛的食物，就很可能会离群飞向更丰盛的食物，而这有可能带动整个鸟群一起飞向新的地点。这个迁移过程中会存在于一些小鸟叛逆，不跟着种群走，可能会发现更丰盛的食物堆。这样反复迭代，最终将找到一个相当丰盛的食物堆。</p>
+</blockquote>
+<h1 id="第-8-章-并行调试"><a href="#第-8-章-并行调试" class="headerlink" title="第 8 章 - 并行调试"></a>第 8 章 - 并行调试</h1><blockquote>
+<p>null</p>
+</blockquote>
+<h1 id="第-9-章-Jetty代码分析"><a href="#第-9-章-Jetty代码分析" class="headerlink" title="第 9 章 - Jetty代码分析"></a>第 9 章 - Jetty代码分析</h1><blockquote>
+<p>Jetty是一个基于Java实现的免费HTTP服务器和Servlet容器，成为与Tomcat齐名的、使用最广泛的Java Web容器之一。</p>
+</blockquote>
+
                 
               </div>
             
